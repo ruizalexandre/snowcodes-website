@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNOWCODES | Bientôt disponible</title>
+    <title>SNOWCODES</title>
     <meta name="description" content="SNOWCODES - Solutions logicielles sur mesure pour votre entreprise">
     <style>
         *, *::before, *::after {
@@ -850,10 +850,6 @@
         <a href="#">
             <img src="assets/logo.png" alt="SNOWCODES" class="nav-logo">
         </a>
-        <ul class="nav-links">
-            <li><a href="#services">Services</a></li>
-            <li><a href="#contact" id="nav-contact">Contact</a></li>
-        </ul>
     </nav>
 
     <!-- Hero -->
@@ -874,7 +870,6 @@
         </div>
         <div class="panel-overlay"></div>
         <div class="panel-content">
-            <div class="hero-label">Bientôt disponible</div>
             <h1 class="panel-title">L'excellence<br>logicielle.</h1>
             <p class="panel-subtitle">Des solutions sur mesure qui repoussent les limites du possible pour votre entreprise.</p>
             <div class="panel-actions">
@@ -989,7 +984,7 @@
             var d = function(s) { return atob(s); };
             var addr = d(p[0]) + '@' + d(p[1]) + '.' + d(p[2]);
 
-            ['contact-btn', 'hero-contact', 'nav-contact', 'svc1-contact', 'svc2-contact', 'svc3-contact'].forEach(function(id) {
+            ['contact-btn', 'hero-contact', 'svc1-contact', 'svc2-contact', 'svc3-contact'].forEach(function(id) {
                 var el = document.getElementById(id);
                 if (el) {
                     el.addEventListener('click', function(e) {
