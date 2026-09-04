@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNOWCODES</title>
-    <meta name="description" content="SNOWCODES - Solutions logicielles sur mesure pour votre entreprise">
+    <title>SNOWCODES — Internet Development Studio</title>
+    <meta name="description" content="SNOWCODES — Internet Development Studio. Code. Create. Explore. Everything matters. Solutions logicielles sur mesure pour votre entreprise.">
+    <meta name="theme-color" content="#0E0E0E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23FF5A00'/%3E%3Cg fill='none' stroke='%230E0E0E' stroke-width='4'%3E%3Ccircle cx='50' cy='50' r='34'/%3E%3Cellipse cx='50' cy='50' rx='14' ry='34'/%3E%3Cline x1='16' y1='50' x2='84' y2='50'/%3E%3Cline x1='22' y1='32' x2='78' y2='32'/%3E%3Cline x1='22' y1='68' x2='78' y2='68'/%3E%3C/g%3E%3Ccircle cx='50' cy='50' r='15' fill='%23FF5A00'/%3E%3Cpath d='M50 30C50 42 58 50 70 50 58 50 50 58 50 70 50 58 42 50 30 50 42 50 50 42 50 30Z' fill='%230E0E0E'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after {
             margin: 0;
@@ -13,29 +18,88 @@
         }
 
         :root {
-            --black: #000000;
-            --white: #f0f0fa;
-            --white-90: rgba(240, 240, 250, 0.9);
-            --white-60: rgba(240, 240, 250, 0.6);
-            --white-40: rgba(240, 240, 250, 0.4);
-            --white-20: rgba(240, 240, 250, 0.2);
-            --white-10: rgba(240, 240, 250, 0.1);
-            --white-05: rgba(240, 240, 250, 0.05);
+            --black: #0E0E0E;
+            --ink: #050505;
+            --orange: #FF5A00;
+            --orange-dim: rgba(255, 90, 0, 0.55);
+            --orange-20: rgba(255, 90, 0, 0.2);
+            --orange-10: rgba(255, 90, 0, 0.1);
+            --cream: #F4EED7;
+            --cream-70: rgba(244, 238, 215, 0.7);
+            --cream-50: rgba(244, 238, 215, 0.5);
+            --cream-30: rgba(244, 238, 215, 0.3);
+            --cream-15: rgba(244, 238, 215, 0.15);
+            --cream-08: rgba(244, 238, 215, 0.08);
+            --sage: #5B6B5E;
+
+            --font-display: 'Orbitron', 'Space Grotesk', system-ui, sans-serif;
+            --font-body: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'Space Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         html {
             scroll-snap-type: y mandatory;
             scroll-behavior: smooth;
+            background: var(--black);
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: var(--font-body);
             background: var(--black);
-            color: var(--white);
+            color: var(--cream);
             line-height: 1.5;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+        }
+
+        ::selection {
+            background: var(--orange);
+            color: var(--black);
+        }
+
+        /* ── Grain overlay ── */
+        .grain {
+            position: fixed;
+            inset: -50%;
+            z-index: 2000;
+            pointer-events: none;
+            opacity: 0.09;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 300px 300px;
+            animation: grainShift 0.6s steps(3) infinite;
+        }
+
+        @keyframes grainShift {
+            0% { transform: translate(0, 0); }
+            33% { transform: translate(-2%, 1%); }
+            66% { transform: translate(1%, -2%); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* ── Typographic utilities ── */
+        .mono {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            line-height: 1.7;
+        }
+
+        .display {
+            font-family: var(--font-display);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            line-height: 0.95;
+        }
+
+        .rule {
+            width: 100%;
+            height: 1px;
+            background: var(--cream-15);
         }
 
         /* ── Navigation ── */
@@ -45,159 +109,174 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 24px 48px;
+            padding: 22px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: background 0.5s;
+            transition: background 0.5s, border-color 0.5s;
+            border-bottom: 1px solid transparent;
         }
 
         nav.scrolled {
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
+            background: rgba(14, 14, 14, 0.82);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom-color: var(--cream-08);
         }
 
         .nav-logo {
-            height: 32px;
+            display: block;
+            height: 34px;
             width: auto;
-            opacity: 0.95;
-            transition: opacity 0.3s;
+            transition: transform 0.4s var(--ease), filter 0.3s;
         }
 
         .nav-logo:hover {
-            opacity: 0.7;
+            transform: rotate(-2deg) scale(1.03);
         }
 
-        .nav-links {
+        .nav-meta {
             display: flex;
             align-items: center;
             gap: 32px;
-            list-style: none;
+            color: var(--cream-50);
         }
 
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            opacity: 0.85;
-            transition: opacity 0.3s;
+        .nav-meta .mono {
+            font-size: 0.62rem;
         }
 
-        .nav-links a:hover {
-            opacity: 1;
+        .nav-meta .sep {
+            width: 24px;
+            height: 1px;
+            background: var(--cream-30);
+        }
+
+        .nav-meta .live {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--orange);
+        }
+
+        .nav-meta .live::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--orange);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--orange);
+            animation: pulse 2.4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.35; }
         }
 
         /* ── Sections ── */
         .panel {
             position: relative;
-            height: 100vh;
+            min-height: 100vh;
+            min-height: 100svh;
             scroll-snap-align: start;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            align-items: center;
-            text-align: center;
+            justify-content: center;
             overflow: hidden;
-        }
-
-        .panel-content {
-            position: relative;
-            z-index: 2;
-            padding: 0 24px 100px;
-            width: 100%;
-            max-width: 1200px;
         }
 
         .panel-bg {
             position: absolute;
             inset: 0;
             z-index: 0;
+            background: var(--black);
         }
 
-        /* Overlay gradient for readability */
-        .panel-overlay {
+        .panel-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 120px 40px 80px;
+        }
+
+        /* Corner markers (blueprint feel) */
+        .corners {
+            position: absolute;
+            inset: 24px 40px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .corners span {
+            position: absolute;
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--cream-30);
+        }
+
+        .corners .bl { left: 0; bottom: 0; }
+        .corners .br { right: 0; bottom: 0; text-align: right; }
+
+        /* ── Hero ── */
+        .hero {
+            justify-content: center;
+        }
+
+        .hero .panel-content {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+            gap: 40px;
+            align-items: center;
+            padding-bottom: 110px;
+        }
+
+        /* Planet horizon */
+        .planet {
+            position: absolute;
+            left: 50%;
+            top: 78%;
+            width: 220vw;
+            max-width: 3200px;
+            aspect-ratio: 1 / 1;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 50% 0%,
+                    rgba(255, 120, 40, 0.9) 0%,
+                    rgba(255, 90, 0, 0.55) 3%,
+                    rgba(255, 90, 0, 0.18) 9%,
+                    rgba(14, 14, 14, 1) 22%);
+            box-shadow:
+                0 -2px 0 0 rgba(255, 160, 100, 0.7),
+                0 -30px 80px rgba(255, 90, 0, 0.45),
+                0 -120px 260px rgba(255, 90, 0, 0.22);
+            z-index: 1;
+        }
+
+        /* City lights on the planet: noise clipped by a gradient mask */
+        .planet::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' seed='7' stitchTiles='stitch'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0 0 0 0 0 0 0 0 0 0 0.5 0.9 1'/%3E%3C/feComponentTransfer%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 0.45 0 0 0 0 0.1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 400px 400px;
+            opacity: 0.9;
+            mask-image: radial-gradient(circle at 50% 0%, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 8%, transparent 20%);
+            -webkit-mask-image: radial-gradient(circle at 50% 0%, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 8%, transparent 20%);
+        }
+
+        .hero-haze {
             position: absolute;
             inset: 0;
             z-index: 1;
-            background: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0) 0%,
-                rgba(0, 0, 0, 0) 40%,
-                rgba(0, 0, 0, 0.7) 75%,
-                rgba(0, 0, 0, 0.95) 100%
-            );
-        }
-
-        .panel-title {
-            font-size: clamp(2rem, 5.5vw, 4rem);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-            margin-bottom: 16px;
-        }
-
-        .panel-subtitle {
-            font-size: clamp(0.9rem, 2vw, 1.1rem);
-            color: var(--white-60);
-            font-weight: 400;
-            max-width: 520px;
-            margin: 0 auto 32px;
-            line-height: 1.7;
-        }
-
-        .panel-actions {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        /* ── Buttons (SpaceX style) ── */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 200px;
-            padding: 14px 32px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .btn-white {
-            background: var(--white);
-            color: var(--black);
-            border: 2px solid var(--white);
-        }
-
-        .btn-white:hover {
-            background: transparent;
-            color: var(--white);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid var(--white-40);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--white);
-            background: var(--white-10);
-        }
-
-        /* ── Hero Panel ── */
-        .hero .panel-bg {
-            background: var(--black);
+            background: linear-gradient(to bottom, rgba(14,14,14,0.2) 0%, rgba(14,14,14,0) 30%, rgba(14,14,14,0) 60%, rgba(14,14,14,0.55) 100%);
+            pointer-events: none;
         }
 
         /* Starfield */
@@ -205,244 +284,137 @@
             position: absolute;
             inset: 0;
             overflow: hidden;
+            z-index: 0;
         }
 
         .stars-layer {
             position: absolute;
             inset: -50%;
             background-image:
-                radial-gradient(1px 1px at 10% 20%, var(--white) 50%, transparent 50%),
-                radial-gradient(1px 1px at 30% 65%, var(--white-90) 50%, transparent 50%),
-                radial-gradient(1.5px 1.5px at 55% 15%, var(--white) 50%, transparent 50%),
-                radial-gradient(1px 1px at 70% 75%, var(--white-90) 50%, transparent 50%),
-                radial-gradient(1px 1px at 85% 40%, var(--white) 50%, transparent 50%),
-                radial-gradient(1.5px 1.5px at 20% 90%, var(--white-90) 50%, transparent 50%),
-                radial-gradient(1px 1px at 45% 50%, var(--white) 50%, transparent 50%),
-                radial-gradient(1px 1px at 92% 10%, var(--white) 50%, transparent 50%),
-                radial-gradient(1px 1px at 60% 85%, var(--white-90) 50%, transparent 50%),
-                radial-gradient(1.5px 1.5px at 5% 55%, var(--white) 50%, transparent 50%);
-            background-size: 200px 200px;
-            animation: starDrift 120s linear infinite;
-            opacity: 0.7;
-        }
-
-        .stars-layer:nth-child(2) {
-            background-size: 300px 300px;
-            animation-duration: 180s;
-            animation-direction: reverse;
+                radial-gradient(1px 1px at 10% 20%, var(--cream) 50%, transparent 50%),
+                radial-gradient(1px 1px at 30% 65%, var(--cream-70) 50%, transparent 50%),
+                radial-gradient(1.5px 1.5px at 55% 15%, var(--cream) 50%, transparent 50%),
+                radial-gradient(1px 1px at 70% 75%, var(--cream-70) 50%, transparent 50%),
+                radial-gradient(1px 1px at 85% 40%, var(--cream) 50%, transparent 50%),
+                radial-gradient(1.5px 1.5px at 20% 90%, var(--cream-70) 50%, transparent 50%),
+                radial-gradient(1px 1px at 45% 50%, var(--cream) 50%, transparent 50%),
+                radial-gradient(1px 1px at 92% 10%, var(--cream) 50%, transparent 50%),
+                radial-gradient(1px 1px at 60% 85%, var(--cream-70) 50%, transparent 50%),
+                radial-gradient(1.5px 1.5px at 5% 55%, var(--orange) 50%, transparent 50%);
+            background-size: 220px 220px;
+            animation: starDrift 140s linear infinite;
             opacity: 0.5;
         }
 
-        .stars-layer:nth-child(3) {
-            background-size: 150px 150px;
-            animation-duration: 90s;
-            opacity: 0.8;
+        .stars-layer:nth-child(2) {
+            background-size: 340px 340px;
+            animation-duration: 200s;
+            animation-direction: reverse;
+            opacity: 0.35;
         }
 
         @keyframes starDrift {
             from { transform: translateY(0); }
-            to { transform: translateY(200px); }
+            to { transform: translateY(220px); }
         }
 
-        /* Shooting stars */
-        .shooting-star {
-            position: absolute;
-            z-index: 1;
-            width: 80px;
-            height: 1px;
-            background: linear-gradient(to right, var(--white), transparent);
-            border-radius: 1px;
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: var(--orange);
+            margin-bottom: 28px;
             opacity: 0;
-            transform: rotate(-35deg);
+            animation: revealUp 1.2s 0.2s var(--ease) forwards;
         }
 
-        .shooting-star::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: -1px;
-            width: 4px;
-            height: 3px;
-            background: var(--white);
-            border-radius: 50%;
-            box-shadow: 0 0 6px 1px rgba(240, 240, 250, 0.5);
+        .hero-eyebrow .rule {
+            width: 40px;
+            background: var(--orange);
         }
 
-        .shooting-star:nth-child(1) {
-            top: 12%;
-            left: 70%;
-            animation: shoot 4s ease-in infinite;
+        .hero-title {
+            font-size: clamp(2.6rem, 7.2vw, 6.4rem);
+            margin-bottom: 28px;
+            opacity: 0;
+            animation: revealUp 1.2s 0.4s var(--ease) forwards;
         }
 
-        .shooting-star:nth-child(2) {
-            top: 30%;
-            left: 45%;
-            width: 60px;
-            transform: rotate(-40deg);
-            animation: shoot2 4s ease-in infinite;
-            animation-delay: 2s;
+        .hero-title .accent {
+            color: var(--orange);
         }
 
-        @keyframes shoot {
-            0% {
-                opacity: 0;
-                transform: rotate(-35deg) translateX(0);
-            }
-            5% {
-                opacity: 1;
-            }
-            15% {
-                opacity: 0;
-                transform: rotate(-35deg) translateX(-250px);
-            }
-            100% {
-                opacity: 0;
-                transform: rotate(-35deg) translateX(-250px);
-            }
+        .hero-title .outline {
+            color: transparent;
+            -webkit-text-stroke: 1.5px var(--cream);
         }
 
-        @keyframes shoot2 {
-            0% {
-                opacity: 0;
-                transform: rotate(-40deg) translateX(0);
-            }
-            5% {
-                opacity: 0.8;
-            }
-            15% {
-                opacity: 0;
-                transform: rotate(-40deg) translateX(-200px);
-            }
-            100% {
-                opacity: 0;
-                transform: rotate(-40deg) translateX(-200px);
-            }
+        .hero-sub {
+            font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+            color: var(--cream-70);
+            max-width: 520px;
+            margin-bottom: 36px;
+            line-height: 1.7;
+            opacity: 0;
+            animation: revealUp 1.2s 0.6s var(--ease) forwards;
         }
 
-        /* Satellites - smooth arc via offset-path on real SVG curves */
-        .satellite {
-            position: absolute;
-            z-index: 1;
-            width: 6px;
-            height: 6px;
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: revealUp 1.2s 0.8s var(--ease) forwards;
         }
 
-        .satellite::before {
-            content: '';
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--white);
-            border-radius: 50%;
-            top: 1px;
-            left: 1px;
-            box-shadow: 0 0 8px 2px rgba(240, 240, 250, 0.6);
+        .hero-manifesto {
+            margin-top: 48px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 20px;
+            align-items: start;
+            color: var(--cream-50);
+            opacity: 0;
+            animation: revealUp 1.2s 1s var(--ease) forwards;
         }
 
-        .satellite::after {
-            content: '';
-            position: absolute;
-            width: 16px;
-            height: 2px;
-            background: var(--white-40);
-            top: 2px;
-            left: -5px;
-            border-radius: 1px;
+        .hero-manifesto .bar {
+            width: 1px;
+            height: 100%;
+            min-height: 60px;
+            background: var(--cream-30);
         }
 
-        /* Satellite 1: smooth arc left to right */
-        .satellite-1 {
-            offset-path: path('M-40,500 Q400,-80 1500,350');
-            offset-rotate: auto;
-            animation: flyArc1 30s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-
-        @keyframes flyArc1 {
-            0%   { offset-distance: 0%; opacity: 0; }
-            3%   { opacity: 0.9; }
-            47%  { opacity: 0.9; }
-            50%  { offset-distance: 100%; opacity: 0; }
-            100% { offset-distance: 100%; opacity: 0; }
-        }
-
-        /* Satellite 2: smooth arc right to left, smaller */
-        .satellite-2 {
-            offset-path: path('M1500,200 Q600,-60 -40,420');
-            offset-rotate: auto;
-            animation: flyArc2 30s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-
-        .satellite-2::before {
-            width: 3px;
-            height: 3px;
-            box-shadow: 0 0 5px 1px rgba(240, 240, 250, 0.4);
-        }
-
-        .satellite-2::after {
-            width: 12px;
-            height: 1.5px;
-            left: -3px;
-        }
-
-        @keyframes flyArc2 {
-            0%   { offset-distance: 0%; opacity: 0; }
-            50%  { offset-distance: 0%; opacity: 0; }
-            53%  { opacity: 0.7; }
-            97%  { opacity: 0.7; }
-            100% { offset-distance: 100%; opacity: 0; }
-        }
-
-        /* Glow effect */
-        .hero-glow {
-            position: absolute;
-            bottom: -30%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120%;
-            height: 60%;
-            background: radial-gradient(
-                ellipse at center bottom,
-                rgba(240, 240, 250, 0.04) 0%,
-                rgba(240, 240, 250, 0.02) 30%,
-                transparent 70%
-            );
-            pointer-events: none;
-        }
-
-        .hero .panel-content {
-            padding-bottom: 120px;
-        }
-
-        .hero-label {
-            display: inline-block;
-            font-size: 0.7rem;
+        .hero-manifesto .mono strong {
+            color: var(--cream);
             font-weight: 700;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--white-40);
-            margin-bottom: 32px;
-            opacity: 0;
-            animation: revealUp 1.2s 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .hero .panel-title {
-            font-size: clamp(3rem, 8vw, 6.5rem);
-            font-weight: 800;
-            letter-spacing: -0.04em;
-            line-height: 0.92;
-            margin-bottom: 24px;
+        /* Poster */
+        .hero-poster {
+            position: relative;
+            justify-self: end;
+            width: min(100%, 380px);
             opacity: 0;
-            animation: revealUp 1.2s 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: posterIn 1.6s 0.5s var(--ease) forwards;
         }
 
-        .hero .panel-subtitle {
-            opacity: 0;
-            animation: revealUp 1.2s 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        .hero-poster img {
+            display: block;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 30px 60px rgba(255, 90, 0, 0.25));
+            animation: float 8s ease-in-out infinite;
         }
 
-        .hero .panel-actions {
-            opacity: 0;
-            animation: revealUp 1.2s 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        @keyframes posterIn {
+            from { opacity: 0; transform: translateY(60px) rotate(2deg); }
+            to { opacity: 1; transform: translateY(0) rotate(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
         }
 
         .scroll-cue {
@@ -454,15 +426,20 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             opacity: 0;
             animation: fadeIn 1s 2s forwards;
         }
 
+        .scroll-cue .mono {
+            font-size: 0.55rem;
+            color: var(--cream-50);
+        }
+
         .scroll-line {
             width: 1px;
-            height: 48px;
-            background: var(--white-20);
+            height: 44px;
+            background: var(--cream-15);
             position: relative;
             overflow: hidden;
         }
@@ -474,7 +451,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--white);
+            background: var(--orange);
             animation: scrollLine 2s ease-in-out infinite;
         }
 
@@ -484,249 +461,385 @@
             100% { top: 100%; }
         }
 
-        /* ── Service Panels ── */
-        .service-panel .panel-bg {
+        /* ── Buttons ── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-width: 200px;
+            padding: 15px 30px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 1.5px solid transparent;
+            cursor: pointer;
+            transition: all 0.35s var(--ease);
+        }
+
+        .btn-orange {
+            background: var(--orange);
+            color: var(--black);
+            border-color: var(--orange);
+        }
+
+        .btn-orange:hover {
+            background: var(--cream);
+            border-color: var(--cream);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(255, 90, 0, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--cream);
+            border-color: var(--cream-30);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--cream);
+            background: var(--cream-08);
+        }
+
+        .btn-black {
             background: var(--black);
+            color: var(--cream);
+            border-color: var(--black);
         }
 
-        /* Geometric accents for each service */
-        .geo-accent {
-            position: absolute;
-            z-index: 1;
-            pointer-events: none;
+        .btn-black:hover {
+            background: var(--cream);
+            color: var(--black);
+            border-color: var(--cream);
+            transform: translateY(-2px);
         }
 
-        /* Panel 2: Grid pattern */
-        .geo-grid {
-            inset: 0;
-            background-image:
-                linear-gradient(var(--white-10) 1px, transparent 1px),
-                linear-gradient(90deg, var(--white-10) 1px, transparent 1px);
-            background-size: 60px 60px;
-            mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 75%);
-            -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 75%);
+        /* ── Service panels ── */
+        .service-panel .panel-content {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+            gap: 64px;
+            align-items: center;
         }
 
-        /* Panel 3: Orbital rings */
-        .geo-orbit {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            border: 1px solid var(--white-10);
-            border-radius: 50%;
-            animation: orbitSpin 60s linear infinite;
+        .service-panel:nth-of-type(odd) .panel-content {
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
         }
 
-        .geo-orbit::before, .geo-orbit::after {
-            content: '';
-            position: absolute;
-            border: 1px solid var(--white-10);
-            border-radius: 50%;
+        .service-panel:nth-of-type(odd) .service-visual {
+            order: -1;
         }
 
-        .geo-orbit::before {
-            inset: 60px;
-            animation: orbitSpin 45s linear infinite reverse;
-        }
-
-        .geo-orbit::after {
-            inset: 140px;
-            animation: orbitSpin 30s linear infinite;
-        }
-
-        @keyframes orbitSpin {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        .geo-orbit {
-            transform: translate(-50%, -50%) rotate(0deg);
-        }
-
-        /* Panel 4: Blueprint planet */
-        .geo-planet {
-            top: 42%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 320px;
-            height: 320px;
-            border-radius: 50%;
-            border: 1px solid var(--white-10);
-            animation: planetSpin 40s linear infinite;
-            overflow: hidden;
-        }
-
-        /* Latitude lines */
-        .geo-planet::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 50%;
-            background:
-                transparent;
-            box-shadow:
-                inset 0 50px 0 -49px var(--white-10),
-                inset 0 100px 0 -99px var(--white-10),
-                inset 0 -50px 0 -49px var(--white-10),
-                inset 0 -100px 0 -99px var(--white-10);
-        }
-
-        /* Meridian ellipses */
-        .geo-planet::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 50%;
-            border: 1px solid transparent;
-            box-shadow:
-                inset 60px 0 0 -59px var(--white-10),
-                inset -60px 0 0 -59px var(--white-10),
-                inset 120px 0 0 -119px var(--white-10),
-                inset -120px 0 0 -119px var(--white-10);
-        }
-
-        .planet-meridian {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60%;
-            height: 100%;
-            border: 1px solid var(--white-10);
-            border-radius: 50%;
-        }
-
-        .planet-meridian:nth-child(2) {
-            width: 85%;
-        }
-
-        .planet-meridian:nth-child(3) {
-            width: 35%;
-        }
-
-        /* Equator */
-        .planet-equator {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: var(--white-10);
-            transform: translateY(-50%);
-        }
-
-        /* Tilted orbit ring around planet */
-        .planet-ring {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 420px;
-            height: 420px;
-            transform: translate(-50%, -50%) rotateX(70deg) rotateZ(-20deg);
-            border: 1px solid var(--white-10);
-            border-radius: 50%;
-            animation: planetSpin 25s linear infinite reverse;
-        }
-
-        .planet-ring::before {
-            content: '';
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: var(--white-20);
-            border-radius: 50%;
-            top: -3px;
-            left: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 0 8px 2px rgba(240, 240, 250, 0.15);
-        }
-
-        @keyframes planetSpin {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
+        .service-head {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
         }
 
         .service-number {
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--white-40);
-            margin-bottom: 20px;
+            font-family: var(--font-display);
+            font-weight: 900;
+            font-size: 0.85rem;
+            color: var(--orange);
+            letter-spacing: 0.1em;
         }
 
-        .service-panel .panel-title {
-            margin-bottom: 20px;
+        .service-head .rule {
+            width: 48px;
+            background: var(--orange);
         }
 
-        .service-icon {
-            width: 56px;
-            height: 56px;
-            margin: 0 auto 28px;
-            color: var(--white);
-            opacity: 0.9;
+        .service-head .mono {
+            color: var(--cream-50);
+            font-size: 0.62rem;
         }
 
-        /* ── Contact Panel ── */
-        .contact-panel .panel-bg {
-            background: var(--black);
+        .service-title {
+            font-size: clamp(1.9rem, 4vw, 3.4rem);
+            margin-bottom: 24px;
         }
 
-        .contact-glow {
-            position: absolute;
-            top: 30%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 800px;
-            height: 400px;
-            background: radial-gradient(
-                ellipse at center,
-                rgba(240, 240, 250, 0.03) 0%,
-                transparent 60%
-            );
-            pointer-events: none;
+        .service-text {
+            font-size: clamp(0.95rem, 1.3vw, 1.08rem);
+            color: var(--cream-70);
+            line-height: 1.75;
+            max-width: 520px;
+            margin-bottom: 32px;
         }
 
-        .contact-panel .panel-content {
-            justify-content: center;
-            padding-bottom: 0;
+        .service-tags {
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .service-tags span {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 7px 12px;
+            border: 1px solid var(--cream-15);
+            color: var(--cream-70);
+            transition: border-color 0.3s, color 0.3s;
+        }
+
+        .service-tags span:hover {
+            border-color: var(--orange);
+            color: var(--orange);
+        }
+
+        /* Service visuals */
+        .service-visual {
+            position: relative;
+            display: flex;
             align-items: center;
+            justify-content: center;
+            aspect-ratio: 1 / 1;
+            max-height: 62vh;
+            width: 100%;
+        }
+
+        .service-visual svg {
+            width: 100%;
             height: 100%;
+            max-width: 520px;
+            max-height: 100%;
+            overflow: visible;
+        }
+
+        /* Background grid */
+        .geo-grid {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background-image:
+                linear-gradient(var(--cream-08) 1px, transparent 1px),
+                linear-gradient(90deg, var(--cream-08) 1px, transparent 1px);
+            background-size: 72px 72px;
+            mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 75%);
+            -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 75%);
+        }
+
+        .geo-glow {
+            position: absolute;
+            z-index: 1;
+            width: 60vw;
+            height: 60vw;
+            max-width: 900px;
+            max-height: 900px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--orange-20) 0%, transparent 60%);
+            pointer-events: none;
+            filter: blur(20px);
+        }
+
+        .geo-glow.left { left: -15vw; top: 50%; transform: translateY(-50%); }
+        .geo-glow.right { right: -15vw; top: 50%; transform: translateY(-50%); }
+
+        /* Spin animations for SVG groups */
+        .spin-slow { transform-origin: center; animation: spin 60s linear infinite; }
+        .spin-slow-rev { transform-origin: center; animation: spin 45s linear infinite reverse; }
+        .spin-fast { transform-origin: center; animation: spin 24s linear infinite; }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .twinkle {
+            transform-origin: center;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(0.85); opacity: 0.7; }
+        }
+
+        .dash-flow {
+            stroke-dasharray: 6 10;
+            animation: dashFlow 4s linear infinite;
+        }
+
+        @keyframes dashFlow {
+            to { stroke-dashoffset: -64; }
+        }
+
+        .orbit-dot {
+            offset-rotate: auto;
+        }
+
+        /* ── Contact panel (orange block) ── */
+        .contact-panel .panel-bg {
+            background: var(--orange);
         }
 
         .contact-panel {
-            justify-content: center;
+            color: var(--black);
         }
 
-        .contact-panel .panel-title {
-            font-size: clamp(2.5rem, 6vw, 5rem);
+        .contact-panel .panel-content {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+            gap: 48px;
+            align-items: end;
+            padding-bottom: 120px;
+        }
+
+        .contact-halftone {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background-image: radial-gradient(rgba(14, 14, 14, 0.18) 1.2px, transparent 1.2px);
+            background-size: 14px 14px;
+            mask-image: linear-gradient(to top, black 0%, transparent 55%);
+            -webkit-mask-image: linear-gradient(to top, black 0%, transparent 55%);
+        }
+
+        .contact-panel .rule {
+            background: rgba(14, 14, 14, 0.25);
+        }
+
+        .contact-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+            color: var(--black);
+        }
+
+        .contact-eyebrow .rule {
+            width: 40px;
+            background: var(--black);
+        }
+
+        .contact-title {
+            font-size: clamp(2.4rem, 6.4vw, 5.6rem);
+            margin-bottom: 28px;
+            color: var(--black);
+        }
+
+        .contact-title .outline {
+            color: transparent;
+            -webkit-text-stroke: 1.5px var(--black);
+        }
+
+        .contact-text {
+            font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+            color: rgba(14, 14, 14, 0.75);
+            max-width: 520px;
+            line-height: 1.7;
+            margin-bottom: 36px;
+        }
+
+        .contact-side {
+            justify-self: end;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 28px;
+            width: 100%;
+            max-width: 360px;
+        }
+
+        .contact-side .globe {
+            width: 160px;
+            height: 160px;
+        }
+
+        .contact-list {
+            width: 100%;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--black);
+        }
+
+        .contact-list li {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 12px 0;
+            border-top: 1px solid rgba(14, 14, 14, 0.25);
+        }
+
+        .contact-list li:last-child {
+            border-bottom: 1px solid rgba(14, 14, 14, 0.25);
+        }
+
+        .contact-list li span:last-child {
+            opacity: 0.6;
+            font-weight: 700;
         }
 
         footer {
             position: absolute;
-            bottom: 24px;
+            bottom: 0;
             left: 0;
             right: 0;
-            text-align: center;
             z-index: 2;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            border-top: 1px solid rgba(14, 14, 14, 0.25);
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(14, 14, 14, 0.7);
         }
 
-        footer p {
+        /* ── Marquee ── */
+        .marquee {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            z-index: 1;
+            padding: 92px 0 0;
+            overflow: hidden;
+            white-space: nowrap;
+            pointer-events: none;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .marquee-track {
+            display: inline-block;
+            font-family: var(--font-display);
+            font-weight: 900;
             font-size: 0.7rem;
-            color: var(--white-20);
-            letter-spacing: 0.1em;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: rgba(14, 14, 14, 0.45);
+            animation: marquee 40s linear infinite;
+        }
+
+        .marquee-track span {
+            margin-right: 3em;
+        }
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
         }
 
         /* ── Scroll reveal ── */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
-            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 1s var(--ease), transform 1s var(--ease);
         }
 
         .reveal.visible {
@@ -738,8 +851,8 @@
         .reveal[data-delay="2"] { transition-delay: 0.2s; }
         .reveal[data-delay="3"] { transition-delay: 0.3s; }
         .reveal[data-delay="4"] { transition-delay: 0.4s; }
+        .reveal[data-delay="5"] { transition-delay: 0.5s; }
 
-        /* ── Keyframes ── */
         @keyframes revealUp {
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
@@ -747,109 +860,204 @@
 
         @keyframes fadeIn {
             from { opacity: 0; }
-            to { opacity: 0.6; }
-        }
-
-        /* ── Divider line ── */
-        .divider {
-            width: 40px;
-            height: 1px;
-            background: var(--white-20);
-            margin: 0 auto 24px;
+            to { opacity: 1; }
         }
 
         /* ── Responsive ── */
-        @media (max-width: 768px) {
-            nav {
-                padding: 18px 24px;
-            }
-
-            .nav-logo {
-                height: 26px;
-            }
-
-            .nav-links {
-                gap: 20px;
-            }
-
-            .nav-links a {
-                font-size: 0.7rem;
-            }
-
-            .panel-content {
-                padding: 0 20px 80px;
-            }
-
+        @media (max-width: 1100px) {
             .hero .panel-content {
-                padding-bottom: 100px;
+                grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
             }
 
-            .btn {
-                min-width: 160px;
-                padding: 12px 24px;
-                font-size: 0.7rem;
+            .hero-title {
+                font-size: clamp(2.4rem, 6vw, 5rem);
             }
 
-            .panel-actions {
-                flex-direction: column;
-                align-items: center;
+            .hero-poster {
+                width: min(100%, 280px);
             }
 
-            .btn {
-                width: 240px;
-            }
-
-            .geo-orbit {
-                width: 350px;
-                height: 350px;
-            }
-
-            .service-icon {
-                width: 44px;
-                height: 44px;
+            .hero-manifesto {
+                display: none;
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 900px) {
+            html {
+                scroll-snap-type: none;
+            }
+
+            .hero .panel-content {
+                grid-template-columns: 1fr;
+                align-items: start;
+                padding-top: 88px;
+                padding-bottom: 96px;
+                gap: 16px;
+            }
+
+            .hero-poster {
+                justify-self: start;
+                order: -1;
+                width: clamp(120px, 18vw, 170px);
+            }
+
+            .hero-eyebrow {
+                margin-bottom: 18px;
+            }
+
+            .hero-title {
+                font-size: clamp(2.1rem, 10vw, 3rem);
+                margin-bottom: 20px;
+            }
+
+            .hero-sub {
+                margin-bottom: 28px;
+            }
+
+            .scroll-cue {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .service-panel .panel-content,
+            .service-panel:nth-of-type(odd) .panel-content {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .service-panel:nth-of-type(odd) .service-visual {
+                order: 0;
+            }
+
+            .service-visual {
+                max-height: 38vh;
+                aspect-ratio: auto;
+                height: 38vh;
+            }
+
+            .contact-panel .panel-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-side {
+                justify-self: start;
+                align-items: flex-start;
+                max-width: none;
+            }
+
+            .contact-side .globe {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
             nav {
-                padding: 14px 16px;
+                padding: 16px 20px;
             }
 
             .nav-logo {
-                height: 22px;
+                height: 28px;
             }
 
-            .nav-links {
-                gap: 14px;
+            .nav-meta .sep,
+            .nav-meta .studio {
+                display: none;
             }
 
-            .nav-links a {
-                font-size: 0.65rem;
-                letter-spacing: 0.08em;
+            .panel-content {
+                padding: 100px 20px 72px;
             }
 
-            .hero .panel-title {
-                font-size: clamp(2.2rem, 12vw, 3.5rem);
+            .corners {
+                inset: 20px 20px;
             }
 
-            .panel-title {
-                font-size: clamp(1.6rem, 7vw, 2.5rem);
+            .corners .br {
+                display: none;
+            }
+
+            .planet {
+                top: 82%;
+                width: 300vw;
             }
 
             .btn {
+                min-width: 0;
                 width: 100%;
-                max-width: 280px;
+                max-width: 320px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .marquee {
+                padding-top: 78px;
+            }
+
+            footer {
+                padding: 16px 20px;
+                font-size: 0.55rem;
+            }
+
+            .contact-panel .panel-content {
+                padding-bottom: 130px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .hero-eyebrow, .hero-title, .hero-sub, .hero-actions, .hero-manifesto, .hero-poster, .scroll-cue, .reveal {
+                opacity: 1;
+                transform: none;
             }
         }
     </style>
 </head>
 <body>
 
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- SVG symbols: globe + star -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+            <symbol id="sym-star" viewBox="0 0 100 100">
+                <path d="M50 0C50 30 70 50 100 50 70 50 50 70 50 100 50 70 30 50 0 50 30 50 50 30 50 0Z"/>
+            </symbol>
+            <symbol id="sym-globe" viewBox="0 0 100 100">
+                <g fill="none" stroke="currentColor" stroke-width="2.2">
+                    <circle cx="50" cy="50" r="46"/>
+                    <ellipse cx="50" cy="50" rx="20" ry="46"/>
+                    <line x1="4" y1="50" x2="96" y2="50"/>
+                    <path d="M9 28H91M9 72H91"/>
+                </g>
+                <circle cx="50" cy="50" r="19" fill="var(--globe-bg, #0E0E0E)"/>
+                <path fill="currentColor" d="M50 28C50 41 59 50 72 50 59 50 50 59 50 72 50 59 41 50 28 50 41 50 50 41 50 28Z"/>
+            </symbol>
+        </defs>
+    </svg>
+
     <!-- Navigation -->
     <nav id="nav">
-        <a href="#">
-            <img src="assets/logo.png" alt="SNOWCODES" class="nav-logo">
+        <a href="#" aria-label="SNOWCODES — Accueil">
+            <picture>
+                <source srcset="assets/web/logo.webp" type="image/webp">
+                <img src="assets/web/logo.png" alt="SNOWCODES" class="nav-logo" width="1200" height="530">
+            </picture>
         </a>
+        <div class="nav-meta">
+            <span class="mono studio">Internet Development Studio</span>
+            <span class="sep"></span>
+            <span class="mono">Est. 2021</span>
+            <span class="sep"></span>
+            <span class="mono live">Studio ouvert</span>
+        </div>
     </nav>
 
     <!-- Hero -->
@@ -858,122 +1066,232 @@
             <div class="stars">
                 <div class="stars-layer"></div>
                 <div class="stars-layer"></div>
-                <div class="stars-layer"></div>
             </div>
-            <div class="hero-glow"></div>
-            <!-- Shooting stars -->
-            <div class="shooting-star"></div>
-            <div class="shooting-star"></div>
-            <!-- Satellites -->
-            <div class="satellite satellite-1"></div>
-            <div class="satellite satellite-2"></div>
+            <div class="planet"></div>
+            <div class="hero-haze"></div>
         </div>
-        <div class="panel-overlay"></div>
+        <div class="corners">
+            <span class="bl">Snowcodes — Visual identity v1.0</span>
+            <span class="br">Est. 2021 — Everything matters</span>
+        </div>
         <div class="panel-content">
-            <h1 class="panel-title">L'excellence<br>logicielle.</h1>
-            <p class="panel-subtitle">Des solutions sur mesure qui repoussent les limites du possible pour votre entreprise.</p>
-            <div class="panel-actions">
-                <a href="#services" class="btn btn-white">Découvrir</a>
-                <a href="#" class="btn btn-outline" id="hero-contact">Nous contacter</a>
+            <div>
+                <div class="hero-eyebrow">
+                    <span class="rule"></span>
+                    <span class="mono">Internet Development Studio</span>
+                </div>
+                <h1 class="hero-title display">
+                    Code.<br>
+                    <span class="accent">Create.</span><br>
+                    <span class="outline">Explore.</span>
+                </h1>
+                <p class="hero-sub">Studio de développement internet. Nous concevons des solutions logicielles sur mesure, du web au mobile, avec une exigence simple : chaque détail compte.</p>
+                <div class="hero-actions">
+                    <a href="#services" class="btn btn-orange">Découvrir le studio</a>
+                    <a href="#" class="btn btn-outline" id="hero-contact">Nous contacter</a>
+                </div>
+                <div class="hero-manifesto">
+                    <span class="bar"></span>
+                    <p class="mono">Code<br>Create<br>Explore<br><strong>Everything matters</strong></p>
+                </div>
+            </div>
+            <div class="hero-poster">
+                <picture>
+                    <source srcset="assets/web/full_logo.webp" type="image/webp">
+                    <img src="assets/web/full_logo.png" alt="SNOWCODES — poster globe" width="1298" height="1800" fetchpriority="high">
+                </picture>
             </div>
         </div>
         <div class="scroll-cue">
+            <span class="mono">Scroll</span>
             <div class="scroll-line"></div>
         </div>
     </section>
 
     <!-- Service 1 -->
     <section class="panel service-panel" id="services">
-        <div class="panel-bg">
-            <div class="geo-accent geo-grid"></div>
+        <div class="panel-bg"></div>
+        <div class="geo-grid"></div>
+        <div class="geo-glow left"></div>
+        <div class="corners">
+            <span class="bl">01 / 03 — Développement</span>
+            <span class="br">Everything matters</span>
         </div>
-        <div class="panel-overlay"></div>
         <div class="panel-content">
-            <div class="service-number reveal">01</div>
-            <svg class="service-icon reveal" data-delay="1" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="4" y="8" width="48" height="34" rx="2"/>
-                <line x1="4" y1="16" x2="52" y2="16"/>
-                <polyline points="20,28 26,34 36,24"/>
-                <line x1="20" y1="46" x2="36" y2="46"/>
-                <line x1="28" y1="42" x2="28" y2="46"/>
-            </svg>
-            <h2 class="panel-title reveal" data-delay="2">Développement<br>sur mesure</h2>
-            <p class="panel-subtitle reveal" data-delay="3">Développement web et mobile axé sur la qualité et la performance. Nous travaillons avec précision, en anticipant les évolutions futures pour des solutions pérennes dès le premier jour.</p>
-            <!--<div class="panel-actions reveal" data-delay="4">
-                <a href="#" class="btn btn-outline" id="svc1-contact">En savoir plus</a>
-            </div>-->
+            <div>
+                <div class="service-head reveal">
+                    <span class="service-number">01</span>
+                    <span class="rule"></span>
+                    <span class="mono">Sur mesure</span>
+                </div>
+                <h2 class="service-title display reveal" data-delay="1">Développement<br>sur mesure</h2>
+                <p class="service-text reveal" data-delay="2">Développement web et mobile axé sur la qualité et la performance. Nous travaillons avec précision, en anticipant les évolutions futures pour des solutions pérennes dès le premier jour.</p>
+                <div class="service-tags reveal" data-delay="3">
+                    <span>Web</span><span>Mobile</span><span>API</span><span>Architecture</span>
+                </div>
+            </div>
+            <div class="service-visual reveal" data-delay="2">
+                <!-- Blueprint: window frame with the 'S' stripes -->
+                <svg viewBox="0 0 400 400" fill="none" aria-hidden="true">
+                    <g stroke="#F4EED7" stroke-opacity="0.18" stroke-width="1">
+                        <rect x="40" y="70" width="320" height="260" rx="2"/>
+                        <line x1="40" y1="106" x2="360" y2="106"/>
+                        <circle cx="58" cy="88" r="4"/><circle cx="74" cy="88" r="4"/><circle cx="90" cy="88" r="4"/>
+                        <line x1="20" y1="70" x2="20" y2="330" class="dash-flow" stroke="#FF5A00" stroke-opacity="0.6"/>
+                        <line x1="40" y1="350" x2="360" y2="350" class="dash-flow" stroke="#FF5A00" stroke-opacity="0.6"/>
+                    </g>
+                    <!-- stripes 'S' mark -->
+                    <g fill="#F4EED7">
+                        <path d="M150 150h110l-22 24H128z"/>
+                        <path d="M128 200h110l-22 24H106z"/>
+                        <path d="M170 250h110l-22 24H148z" fill="#FF5A00"/>
+                    </g>
+                    <g font-family="'Space Mono', monospace" font-size="9" fill="#F4EED7" fill-opacity="0.45" letter-spacing="1.5">
+                        <text x="40" y="60">FIG. 01 — BUILD</text>
+                        <text x="270" y="60">2200.00</text>
+                        <text x="40" y="372">10.000</text>
+                        <text x="300" y="372">100.000</text>
+                    </g>
+                    <use href="#sym-star" x="300" y="130" width="22" height="22" fill="#FF5A00" class="twinkle"/>
+                </svg>
+            </div>
         </div>
     </section>
 
     <!-- Service 2 -->
     <section class="panel service-panel">
-        <div class="panel-bg">
-            <div class="geo-accent geo-orbit"></div>
+        <div class="panel-bg"></div>
+        <div class="geo-grid"></div>
+        <div class="geo-glow right"></div>
+        <div class="corners">
+            <span class="bl">02 / 03 — Technologies</span>
+            <span class="br">Everything matters</span>
         </div>
-        <div class="panel-overlay"></div>
         <div class="panel-content">
-            <div class="service-number reveal">02</div>
-            <svg class="service-icon reveal" data-delay="1" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="18,20 10,28 18,36"/>
-                <polyline points="38,20 46,28 38,36"/>
-                <line x1="32" y1="14" x2="24" y2="42"/>
-            </svg>
-            <h2 class="panel-title reveal" data-delay="2">Maîtrise<br>technologique</h2>
-            <p class="panel-subtitle reveal" data-delay="3">Mobile avec Flutter, web avec Angular et React. Plus de 10 ans d'expérience et l'IA intégrée à nos process pour livrer des solutions performantes sur chaque plateforme.</p>
-            <!--<div class="panel-actions reveal" data-delay="4">
-                <a href="#" class="btn btn-outline" id="svc2-contact">En savoir plus</a>
-            </div>-->
+            <div>
+                <div class="service-head reveal">
+                    <span class="service-number">02</span>
+                    <span class="rule"></span>
+                    <span class="mono">Stack</span>
+                </div>
+                <h2 class="service-title display reveal" data-delay="1">Maîtrise<br>technologique</h2>
+                <p class="service-text reveal" data-delay="2">Mobile avec Flutter, web avec Angular et React. Plus de 10 ans d'expérience et l'IA intégrée à nos process pour livrer des solutions performantes sur chaque plateforme.</p>
+                <div class="service-tags reveal" data-delay="3">
+                    <span>Flutter</span><span>Angular</span><span>React</span><span>IA</span><span>Cloud</span>
+                </div>
+            </div>
+            <div class="service-visual reveal" data-delay="2">
+                <!-- Orbital rings with star core -->
+                <svg viewBox="0 0 400 400" fill="none" aria-hidden="true">
+                    <g stroke="#F4EED7" stroke-opacity="0.16" stroke-width="1">
+                        <circle cx="200" cy="200" r="180"/>
+                        <circle cx="200" cy="200" r="140"/>
+                        <circle cx="200" cy="200" r="100"/>
+                    </g>
+                    <g class="spin-slow">
+                        <circle cx="200" cy="200" r="180" stroke="#FF5A00" stroke-opacity="0.6" stroke-width="1" stroke-dasharray="40 300"/>
+                        <circle cx="380" cy="200" r="4" fill="#FF5A00"/>
+                    </g>
+                    <g class="spin-slow-rev">
+                        <circle cx="200" cy="200" r="140" stroke="#F4EED7" stroke-opacity="0.5" stroke-width="1" stroke-dasharray="20 200"/>
+                        <circle cx="60" cy="200" r="3" fill="#F4EED7"/>
+                    </g>
+                    <g class="spin-fast">
+                        <circle cx="200" cy="100" r="3" fill="#FF5A00"/>
+                    </g>
+                    <use href="#sym-star" x="150" y="150" width="100" height="100" fill="#F4EED7" class="twinkle"/>
+                    <g font-family="'Space Mono', monospace" font-size="9" fill="#F4EED7" fill-opacity="0.45" letter-spacing="1.5">
+                        <text x="0" y="30">FIG. 02 — ORBIT</text>
+                        <text x="330" y="390">R = 180</text>
+                    </g>
+                </svg>
+            </div>
         </div>
     </section>
 
     <!-- Service 3 -->
     <section class="panel service-panel">
-        <div class="panel-bg">
-            <div class="geo-accent geo-planet">
-                <div class="planet-meridian"></div>
-                <div class="planet-meridian"></div>
-                <div class="planet-meridian"></div>
-                <div class="planet-equator"></div>
-            </div>
-            <div class="geo-accent planet-ring"></div>
+        <div class="panel-bg"></div>
+        <div class="geo-grid"></div>
+        <div class="geo-glow left"></div>
+        <div class="corners">
+            <span class="bl">03 / 03 — Accompagnement</span>
+            <span class="br">Everything matters</span>
         </div>
-        <div class="panel-overlay"></div>
         <div class="panel-content">
-            <div class="service-number reveal">03</div>
-            <svg class="service-icon reveal" data-delay="1" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14 42V28a14 14 0 0 1 28 0v14"/>
-                <line x1="8" y1="42" x2="48" y2="42"/>
-                <circle cx="28" cy="24" r="5"/>
-                <line x1="28" y1="29" x2="28" y2="36"/>
-            </svg>
-            <h2 class="panel-title reveal" data-delay="2">Accompagnement<br>continu</h2>
-            <p class="panel-subtitle reveal" data-delay="3">De la première ligne de code à la mise en production. Un suivi rigoureux, itératif, aligné sur vos objectifs.</p>
-            <!--<div class="panel-actions reveal" data-delay="4">
-                <a href="#" class="btn btn-outline" id="svc3-contact">En savoir plus</a>
-            </div>-->
+            <div>
+                <div class="service-head reveal">
+                    <span class="service-number">03</span>
+                    <span class="rule"></span>
+                    <span class="mono">Suivi</span>
+                </div>
+                <h2 class="service-title display reveal" data-delay="1">Accompagnement<br>continu</h2>
+                <p class="service-text reveal" data-delay="2">De la première ligne de code à la mise en production. Un suivi rigoureux, itératif, aligné sur vos objectifs.</p>
+                <div class="service-tags reveal" data-delay="3">
+                    <span>Conseil</span><span>Itératif</span><span>Production</span><span>Support</span>
+                </div>
+            </div>
+            <div class="service-visual reveal" data-delay="2">
+                <!-- Wireframe globe -->
+                <svg viewBox="0 0 400 400" fill="none" aria-hidden="true">
+                    <g stroke="#FF5A00" stroke-opacity="0.85" stroke-width="1.4">
+                        <circle cx="200" cy="200" r="150"/>
+                        <ellipse cx="200" cy="200" rx="105" ry="150"/>
+                        <ellipse cx="200" cy="200" rx="52" ry="150"/>
+                        <line x1="200" y1="50" x2="200" y2="350"/>
+                        <line x1="50" y1="200" x2="350" y2="200"/>
+                        <path d="M64 140H336M64 260H336"/>
+                        <path d="M95 92Q200 130 305 92M95 308Q200 270 305 308"/>
+                    </g>
+                    <g class="spin-slow">
+                        <ellipse cx="200" cy="200" rx="190" ry="60" stroke="#F4EED7" stroke-opacity="0.35" stroke-width="1" transform="rotate(-20 200 200)"/>
+                        <circle cx="390" cy="200" r="3.5" fill="#F4EED7" transform="rotate(-20 200 200)"/>
+                    </g>
+                    <circle cx="200" cy="200" r="46" fill="#0E0E0E"/>
+                    <use href="#sym-star" x="160" y="160" width="80" height="80" fill="#F4EED7" class="twinkle"/>
+                    <g font-family="'Space Mono', monospace" font-size="9" fill="#F4EED7" fill-opacity="0.45" letter-spacing="1.5">
+                        <text x="0" y="30">FIG. 03 — GLOBE</text>
+                        <text x="300" y="390">EST. 2021</text>
+                    </g>
+                </svg>
+            </div>
         </div>
     </section>
 
     <!-- Contact -->
     <section class="panel contact-panel" id="contact">
-        <div class="panel-bg">
-            <div class="stars">
-                <div class="stars-layer"></div>
-                <div class="stars-layer"></div>
+        <div class="panel-bg"></div>
+        <div class="contact-halftone"></div>
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee-track">
+                <span>Code</span><span>Create</span><span>Explore</span><span>Everything matters</span><span>Snowcodes</span><span>Internet Development Studio</span>
+                <span>Code</span><span>Create</span><span>Explore</span><span>Everything matters</span><span>Snowcodes</span><span>Internet Development Studio</span>
             </div>
-            <div class="contact-glow"></div>
         </div>
-        <div class="panel-overlay" style="background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.95) 100%);"></div>
         <div class="panel-content">
-            <div class="divider reveal"></div>
-            <h2 class="panel-title reveal" data-delay="1">Parlons de<br>votre projet.</h2>
-            <p class="panel-subtitle reveal" data-delay="2">Nous concevons les solutions qui propulsent vos ambitions. Chaque projet commence par une conversation.</p>
-            <div class="panel-actions reveal" data-delay="3">
-                <a href="#" class="btn btn-white" id="contact-btn">Nous contacter</a>
+            <div>
+                <div class="contact-eyebrow reveal">
+                    <span class="rule"></span>
+                    <span class="mono">Contact</span>
+                </div>
+                <h2 class="contact-title display reveal" data-delay="1">Parlons de<br><span class="outline">votre projet.</span></h2>
+                <p class="contact-text reveal" data-delay="2">Nous concevons les solutions qui propulsent vos ambitions. Chaque projet commence par une conversation.</p>
+                <div class="reveal" data-delay="3">
+                    <a href="#" class="btn btn-black" id="contact-btn">Nous écrire</a>
+                </div>
+            </div>
+            <div class="contact-side reveal" data-delay="3">
+                <svg class="globe" viewBox="0 0 100 100" style="--globe-bg:#FF5A00; color:#0E0E0E" aria-hidden="true"><use href="#sym-globe"/></svg>
+                <ul class="contact-list">
+                    <li><span>Studio</span><span>Snowcodes</span></li>
+                    <li><span>Depuis</span><span>2021</span></li>
+                    <li><span>Réponse</span><span>&lt; 48h</span></li>
+                </ul>
             </div>
         </div>
         <footer>
-            <p>&copy; 2025 SNOWCODES. Tous droits réservés.</p>
+            <span>&copy; 2025 SNOWCODES — Tous droits réservés</span>
+            <span>Code · Create · Explore · Everything matters</span>
         </footer>
     </section>
 
@@ -984,7 +1302,7 @@
             var d = function(s) { return atob(s); };
             var addr = d(p[0]) + '@' + d(p[1]) + '.' + d(p[2]);
 
-            ['contact-btn', 'hero-contact', 'svc1-contact', 'svc2-contact', 'svc3-contact'].forEach(function(id) {
+            ['contact-btn', 'hero-contact'].forEach(function(id) {
                 var el = document.getElementById(id);
                 if (el) {
                     el.addEventListener('click', function(e) {
@@ -998,10 +1316,11 @@
         // Nav background on scroll
         (function() {
             var nav = document.getElementById('nav');
-            var observer = new IntersectionObserver(function(entries) {
-                nav.classList.toggle('scrolled', !entries[0].isIntersecting);
-            }, { threshold: 0.8 });
-            observer.observe(document.getElementById('hero'));
+            var update = function() {
+                nav.classList.toggle('scrolled', window.scrollY > 60);
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            update();
         })();
 
         // Scroll reveal
@@ -1022,9 +1341,15 @@
 
         // Smooth scroll for anchor links (skip mailto buttons)
         document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-            if (anchor.id) return; // Skip buttons with IDs (they're mailto)
+            if (anchor.id) return;
             anchor.addEventListener('click', function(e) {
-                var target = document.querySelector(this.getAttribute('href'));
+                var href = this.getAttribute('href');
+                if (href === '#') {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    return;
+                }
+                var target = document.querySelector(href);
                 if (target) {
                     e.preventDefault();
                     target.scrollIntoView({ behavior: 'smooth' });
