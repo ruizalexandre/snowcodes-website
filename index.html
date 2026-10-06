@@ -7,14 +7,12 @@
         <title>SNOWCODES — Internet Development Studio</title>
         <meta name="description"
             content="SNOWCODES — Internet Development Studio. Code. Create. Explore. Everything matters. Solutions logicielles sur mesure pour votre entreprise.">
-        <meta name="theme-color" content="#0A0A0A">
+        <meta name="theme-color" content="#000000">
         <link rel="icon" type="image/svg+xml"
-            href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230A0A0A'/%3E%3Ctext x='50' y='68' font-family='monospace' font-size='52' font-weight='700' fill='%23FF5A00' text-anchor='middle'%3E%3E_%3C/text%3E%3C/svg%3E">
+            href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23000'/%3E%3Crect x='22' y='22' width='56' height='56' rx='6' fill='%23FF5A00'/%3E%3C/svg%3E">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap"
-            rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
         <style>
             *,
             *::before,
@@ -25,39 +23,37 @@
             }
 
             :root {
-                --bg: #0A0A0A;
-                --bg-2: #0F0F0F;
-                --panel: #0D0D0D;
-                --fg: #D4D4D0;
-                --fg-70: rgba(212, 212, 208, 0.7);
-                --fg-45: rgba(212, 212, 208, 0.45);
-                --fg-30: rgba(212, 212, 208, 0.3);
-                --fg-15: rgba(212, 212, 208, 0.15);
-                --line: rgba(212, 212, 208, 0.12);
-                --line-soft: rgba(212, 212, 208, 0.07);
+                --black: #000000;
+                --ink: #171A20;
+                --graphite: #111111;
+                --steel: #1C1C1E;
+                --white: #FFFFFF;
+                --light: #F4F4F4;
+                --light-2: #E8E8E8;
+                --grey: #8E8E8E;
+                --grey-2: #5C5E62;
                 --orange: #FF5A00;
-                --orange-60: rgba(255, 90, 0, 0.6);
-                --orange-15: rgba(255, 90, 0, 0.15);
+                --orange-dark: #E04F00;
 
-                --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+                --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
 
-                --ease: cubic-bezier(0.16, 1, 0.3, 1);
+                --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
                 --gutter: 48px;
-                --max: 1160px;
-                --bar-h: 38px;
+                --max: 1280px;
+                --radius: 4px;
             }
 
             html {
                 scroll-behavior: smooth;
-                background: var(--bg);
+                background: var(--black);
             }
 
             body {
-                font-family: var(--font-mono);
+                font-family: var(--font);
                 font-weight: 400;
-                background: var(--bg);
-                color: var(--fg);
-                line-height: 1.65;
+                background: var(--black);
+                color: var(--white);
+                line-height: 1.5;
                 overflow-x: hidden;
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
@@ -65,7 +61,7 @@
 
             ::selection {
                 background: var(--orange);
-                color: var(--bg);
+                color: var(--white);
             }
 
             img {
@@ -78,34 +74,6 @@
                 text-decoration: none;
             }
 
-            /* ══════════════════════════════════════════
-               Overlays: faint grain + scanlines
-               ══════════════════════════════════════════ */
-            .grain {
-                position: fixed;
-                inset: -50%;
-                z-index: 2000;
-                pointer-events: none;
-                opacity: 0.06;
-                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-                background-size: 300px 300px;
-            }
-
-            .scan {
-                position: fixed;
-                inset: 0;
-                z-index: 2001;
-                pointer-events: none;
-                opacity: 0.18;
-                background: repeating-linear-gradient(to bottom,
-                        rgba(0, 0, 0, 0) 0px,
-                        rgba(0, 0, 0, 0) 3px,
-                        rgba(0, 0, 0, 0.5) 4px);
-            }
-
-            /* ══════════════════════════════════════════
-               Utilities
-               ══════════════════════════════════════════ */
             .wrap {
                 width: 100%;
                 max-width: var(--max);
@@ -114,130 +82,69 @@
                 padding-right: var(--gutter);
             }
 
-            .prompt {
-                color: var(--orange);
+            /* ══════════════════════════════════════════
+               Buttons — Tesla style
+               ══════════════════════════════════════════ */
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 264px;
+                height: 40px;
+                padding: 0 24px;
+                border-radius: var(--radius);
+                font-size: 0.875rem;
+                font-weight: 500;
+                letter-spacing: 0.01em;
+                transition: background 0.3s var(--ease), color 0.3s, transform 0.3s var(--ease), box-shadow 0.3s;
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
             }
 
-            .cmt {
-                color: var(--fg-45);
-                font-style: italic;
-                font-weight: 300;
+            .btn:hover { transform: translateY(-1px); }
+
+            .btn-primary {
+                background: var(--orange);
+                color: var(--white);
             }
 
-            .k {
-                font-size: 0.68rem;
+            .btn-primary:hover {
+                background: var(--orange-dark);
+                box-shadow: 0 8px 24px rgba(255, 90, 0, 0.25);
+            }
+
+            .btn-light {
+                background: rgba(255, 255, 255, 0.72);
+                color: var(--ink);
+            }
+
+            .btn-light:hover { background: rgba(255, 255, 255, 0.92); }
+
+            .btn-dark {
+                background: rgba(23, 26, 32, 0.85);
+                color: var(--white);
+            }
+
+            .btn-dark:hover { background: var(--ink); }
+
+            .btns {
+                display: flex;
+                gap: 20px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            /* Labels */
+            .eyebrow {
+                font-size: 0.75rem;
+                font-weight: 500;
                 letter-spacing: 0.14em;
                 text-transform: uppercase;
-                color: var(--fg-45);
+                color: var(--grey);
             }
-
-            .cursor {
-                display: inline-block;
-                width: 0.58em;
-                height: 1.05em;
-                background: var(--fg);
-                vertical-align: text-bottom;
-                margin-left: 2px;
-                animation: blink 1.1s steps(1) infinite;
-            }
-
-            @keyframes blink {
-
-                0%,
-                49% {
-                    opacity: 1;
-                }
-
-                50%,
-                100% {
-                    opacity: 0;
-                }
-            }
-
-            .rule {
-                height: 1px;
-                background: var(--line);
-            }
-
-            /* Terminal windows */
-            .window {
-                border: 1px solid var(--line);
-                background: var(--panel);
-            }
-
-            .window-bar {
-                display: flex;
-                align-items: center;
-                gap: 7px;
-                padding: 8px 14px;
-                border-bottom: 1px solid var(--line);
-                font-size: 0.62rem;
-                letter-spacing: 0.1em;
-                text-transform: uppercase;
-                color: var(--fg-45);
-            }
-
-            .window-bar i {
-                width: 8px;
-                height: 8px;
-                border-radius: 50%;
-                background: var(--fg-15);
-                display: inline-block;
-            }
-
-            .window-bar em {
-                font-style: normal;
-                margin-left: auto;
-                letter-spacing: 0.06em;
-                text-transform: none;
-            }
-
-            .window-bar em b {
-                font-weight: 400;
-                color: var(--orange);
-            }
-
-            .log {
-                padding: 14px 16px 16px;
-                font-size: 0.72rem;
-                line-height: 1.7;
-                color: var(--fg-70);
-                white-space: pre-wrap;
-                font-family: var(--font-mono);
-                counter-reset: ln;
-                overflow: hidden;
-            }
-
-            .log .ln {
-                display: block;
-                position: relative;
-                padding-left: 34px;
-                overflow-wrap: anywhere;
-            }
-
-            .log .ln::before {
-                counter-increment: ln;
-                content: counter(ln, decimal-leading-zero);
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 22px;
-                text-align: right;
-                color: var(--fg-30);
-                font-weight: 300;
-            }
-
-            .log .p { color: var(--orange); }
-            .log .o { color: var(--fg); }
-            .log .d { color: var(--fg-45); }
-            .log .w { color: var(--orange-60); }
-            .log .n { color: var(--fg-45); }
-
-            .log.raw .ln { padding-left: 0; }
-            .log.raw .ln::before { display: none; }
 
             /* ══════════════════════════════════════════
-               tmux status bar (header)
+               Header
                ══════════════════════════════════════════ */
             header {
                 position: fixed;
@@ -245,108 +152,70 @@
                 left: 0;
                 right: 0;
                 z-index: 100;
-                height: var(--bar-h);
-                background: #0D0D0D;
-                border-bottom: 1px solid var(--line);
-                font-size: 0.7rem;
-                letter-spacing: 0.02em;
+                height: 64px;
+                transition: background 0.4s, backdrop-filter 0.4s;
+            }
+
+            header.scrolled {
+                background: rgba(0, 0, 0, 0.72);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
             }
 
             header .wrap {
                 height: 100%;
-                display: flex;
+                display: grid;
+                grid-template-columns: 1fr auto 1fr;
                 align-items: center;
-                justify-content: space-between;
-                gap: 24px;
             }
 
-            .tmux-left {
-                display: flex;
-                align-items: center;
-                gap: 0;
-                height: 100%;
-            }
-
-            .session {
-                display: inline-flex;
-                align-items: center;
-                gap: 10px;
-                height: 100%;
-                padding: 0 14px 0 0;
-                margin-right: 14px;
-                border-right: 1px solid var(--line);
-            }
-
-            .session img {
-                height: 18px;
+            .logo img {
+                height: 22px;
                 width: auto;
-            }
-
-            .session .path {
-                color: var(--fg-45);
             }
 
             .menu {
                 display: flex;
                 align-items: center;
+                gap: 4px;
                 list-style: none;
-                height: 100%;
             }
 
-            .menu a {
+            .menu a,
+            .menu-right a {
                 display: inline-flex;
                 align-items: center;
-                height: var(--bar-h);
-                padding: 0 12px;
-                color: var(--fg-45);
-                transition: color 0.3s, background 0.3s;
+                height: 32px;
+                padding: 0 14px;
+                border-radius: var(--radius);
+                font-size: 0.875rem;
+                font-weight: 500;
+                color: var(--white);
+                transition: background 0.3s;
             }
 
-            .menu a .n {
-                color: var(--fg-30);
-                margin-right: 2px;
+            .menu a:hover,
+            .menu-right a:hover {
+                background: rgba(255, 255, 255, 0.1);
             }
 
-            .menu a:hover {
-                color: var(--fg);
-                background: var(--bg-2);
-            }
-
-            .menu a.active {
-                color: var(--bg);
-                background: var(--fg);
-            }
-
-            .menu a.active .n { color: rgba(10, 10, 10, 0.6); }
-
-            .menu a.active::after {
-                content: '*';
-            }
-
-            .tmux-right {
+            .menu-right {
                 display: flex;
+                justify-content: flex-end;
                 align-items: center;
-                gap: 18px;
-                color: var(--fg-45);
-                white-space: nowrap;
+                gap: 4px;
             }
 
-            .tmux-right .sep { color: var(--fg-15); }
+            .menu-right .pill {
+                gap: 8px;
+            }
 
-            .tmux-right .dot {
-                display: inline-block;
+            .menu-right .pill i {
                 width: 6px;
                 height: 6px;
                 border-radius: 50%;
                 background: var(--orange);
-                margin-right: 7px;
-                vertical-align: middle;
                 animation: breathe 2.6s ease-in-out infinite;
-            }
-
-            .tmux-right #clock {
-                color: var(--fg);
-                font-variant-numeric: tabular-nums;
             }
 
             @keyframes breathe {
@@ -355,502 +224,438 @@
             }
 
             /* ══════════════════════════════════════════
-               Hero
+               Hero — product stage
                ══════════════════════════════════════════ */
             .hero {
+                position: relative;
                 min-height: 100vh;
                 min-height: 100svh;
-                display: flex;
-                align-items: center;
-                position: relative;
-                padding: 140px 0 100px;
-            }
-
-            .hero .wrap {
                 display: grid;
-                grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-                gap: 64px;
-                align-items: center;
+                grid-template-rows: auto 1fr auto;
+                padding: 120px 0 56px;
+                overflow: hidden;
+                background:
+                    radial-gradient(60% 45% at 50% 62%, rgba(255, 255, 255, 0.07), transparent 70%),
+                    radial-gradient(40% 30% at 50% 100%, rgba(255, 90, 0, 0.12), transparent 70%),
+                    var(--black);
             }
 
-            .term-line {
-                font-size: 0.92rem;
-                margin-bottom: 28px;
-                min-height: 1.6em;
+            .hero::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 68%;
+                height: 1px;
+                background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.16), transparent);
+            }
+
+            .hero-head {
+                text-align: center;
+                position: relative;
+                z-index: 1;
+            }
+
+            .hero-head .eyebrow {
+                margin-bottom: 14px;
+                opacity: 0;
+                animation: riseIn 1s 0.1s var(--ease) forwards;
             }
 
             .hero-title {
                 font-weight: 500;
-                font-size: clamp(2.6rem, 6.2vw, 5.4rem);
-                line-height: 1.05;
+                font-size: clamp(2.4rem, 5vw, 3.6rem);
                 letter-spacing: -0.02em;
-                color: var(--fg);
-                margin-bottom: 32px;
-                position: relative;
+                line-height: 1.1;
+            }
+
+            /* Split per letter by JS */
+            .hero-title .w {
+                display: inline-block;
+                overflow: hidden;
+                padding-bottom: 0.08em;
+                vertical-align: top;
+                transition: color 0.35s var(--ease), text-shadow 0.35s var(--ease);
+            }
+
+            .hero-title .w[data-w="explore"] { color: var(--grey); }
+
+
+            .hero-title .ch {
+                display: inline-block;
+                transform: translateY(110%) rotate(8deg);
+                animation: chIn 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+                animation-delay: calc(0.15s + var(--i) * 0.035s);
+            }
+
+            @keyframes chIn { to { transform: none; } }
+
+            .hero-sub {
+                margin-top: 12px;
+                font-size: 0.95rem;
+                color: var(--grey);
                 opacity: 0;
-                transform: translateY(10px);
-                transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+                animation: riseIn 1s 0.3s var(--ease) forwards;
             }
 
-            .hero-title.on {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            .hero-title .caret {
-                color: var(--orange);
-                animation: blink 1.1s steps(1) infinite;
-            }
-
-            /* Glitch (rare, subtle) */
-            .glitch::before,
-            .glitch::after {
-                content: attr(data-text);
+            /* Live particle swarm — canvas spans the hero, shapes land inside the stage */
+            #swarm {
                 position: absolute;
-                left: 0;
-                top: 0;
+                inset: 0;
                 width: 100%;
-                white-space: pre;
-                opacity: 0;
+                height: 100%;
                 pointer-events: none;
             }
 
-            .glitch::before { color: var(--orange); }
-            .glitch::after { color: var(--fg-45); }
-
-            .glitch.glitching::before {
-                opacity: 0.7;
-                animation: glitchA 0.32s steps(2) 1;
+            .hero-visual {
+                position: relative;
+                z-index: 1;
+                width: min(100% - 2 * var(--gutter), 1120px);
+                min-height: min(48vh, 520px);
+                margin: 28px auto 0;
+                cursor: crosshair;
+                -webkit-tap-highlight-color: transparent;
             }
 
-            .glitch.glitching::after {
-                opacity: 0.7;
-                animation: glitchB 0.32s steps(2) 1;
-            }
-
-            @keyframes glitchA {
-                0% { clip-path: inset(12% 0 78% 0); transform: translate(-4px, 0); }
-                33% { clip-path: inset(58% 0 22% 0); transform: translate(3px, 0); }
-                66% { clip-path: inset(30% 0 52% 0); transform: translate(-2px, 0); }
-                100% { clip-path: inset(0 0 100% 0); transform: none; }
-            }
-
-            @keyframes glitchB {
-                0% { clip-path: inset(70% 0 12% 0); transform: translate(4px, 0); }
-                33% { clip-path: inset(18% 0 70% 0); transform: translate(-3px, 0); }
-                66% { clip-path: inset(44% 0 36% 0); transform: translate(2px, 0); }
-                100% { clip-path: inset(0 0 100% 0); transform: none; }
-            }
-
-            .hero-sub {
-                max-width: 470px;
-                font-size: 0.94rem;
-                line-height: 1.8;
-                color: var(--fg-70);
-                margin-bottom: 34px;
-                font-weight: 300;
-            }
-
-            .hero-meta {
-                display: flex;
-                align-items: center;
-                gap: 20px;
-                flex-wrap: wrap;
-                font-size: 0.66rem;
-                letter-spacing: 0.12em;
-                text-transform: uppercase;
-                color: var(--fg-45);
-                margin-bottom: 40px;
-            }
-
-            .hero-meta .rule { width: 36px; }
-
-            .btn {
-                display: inline-flex;
-                align-items: center;
-                gap: 12px;
-                font-size: 0.8rem;
-                padding: 12px 18px;
-                border: 1px solid var(--fg-30);
-                color: var(--fg);
-                background: transparent;
-                transition: border-color 0.3s, background 0.3s, transform 0.3s var(--ease);
-            }
-
-            .btn::before {
-                content: '$';
-                color: var(--orange);
-            }
-
-            .btn:hover {
-                border-color: var(--fg);
-                background: var(--bg-2);
-                transform: translateY(-2px);
-            }
-
-            .hero-side {
-                justify-self: end;
-                width: 100%;
-                max-width: 500px;
-                display: flex;
-                flex-direction: column;
-                gap: 14px;
-            }
-
-            .hero-logo {
-                margin-bottom: 6px;
-            }
-
-            .hero-logo img {
-                height: 32px;
-                width: auto;
-            }
-
-            #shell { min-height: 150px; }
-            #access { min-height: 190px; }
-
-            #access .ln { display: flex; gap: 10px; }
-            #access .ln > span { white-space: nowrap; }
-            #access .ln > .o, #access .ln > .s4xx { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
-            #access .ln::before { position: static; flex: 0 0 22px; }
-            #access .ts { color: var(--fg-45); flex: 0 0 auto; }
-            #access .m { color: var(--fg); }
-            #access .s200 { color: var(--fg-70); }
-            #access .s304 { color: var(--fg-45); }
-            #access .s4xx { color: var(--orange); }
-            #access .ms { color: var(--fg-30); margin-left: auto; }
-
-            .scroll-hint {
-                position: absolute;
-                left: 50%;
-                bottom: 30px;
-                transform: translateX(-50%);
+            .hero-foot {
+                position: relative;
+                z-index: 1;
+                margin-top: 40px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 10px;
-                font-size: 0.6rem;
-                letter-spacing: 0.2em;
-                text-transform: uppercase;
-                color: var(--fg-30);
+                gap: 32px;
                 opacity: 0;
-                animation: fadeIn 1.4s 2.4s var(--ease) forwards;
+                animation: riseIn 1s 0.6s var(--ease) forwards;
             }
 
-            .scroll-hint .line {
-                width: 1px;
-                height: 44px;
-                background: var(--line);
-                position: relative;
-                overflow: hidden;
-            }
-
-            .scroll-hint .line::after {
-                content: '';
-                position: absolute;
-                left: 0;
-                top: -100%;
-                width: 100%;
-                height: 100%;
-                background: var(--fg-70);
-                animation: drip 2.2s ease-in-out infinite;
-            }
-
-            @keyframes drip {
-                0% { top: -100%; }
-                60%, 100% { top: 100%; }
-            }
-
-            /* ══════════════════════════════════════════
-               Section shell
-               ══════════════════════════════════════════ */
-            section { padding: 140px 0; }
-
-            .sec-head {
+            .specs {
                 display: flex;
-                align-items: baseline;
-                gap: 12px;
-                flex-wrap: wrap;
-                margin-bottom: 52px;
-                font-size: 0.92rem;
+                justify-content: center;
+                gap: 64px;
             }
 
-            .sec-head h2 {
-                font-size: inherit;
-                font-weight: 500;
-                color: var(--fg);
+            .spec {
+                text-align: center;
             }
 
-            .sec-head .cmt { margin-left: auto; font-size: 0.76rem; }
-
-            /* ══════════════════════════════════════════
-               Services — ls -la
-               ══════════════════════════════════════════ */
-            .ls-head {
-                display: grid;
-                grid-template-columns: 110px 56px minmax(0, 1fr) minmax(0, 240px);
-                gap: 40px;
-                padding: 0 0 12px;
-                font-size: 0.62rem;
-                letter-spacing: 0.12em;
-                text-transform: uppercase;
-                color: var(--fg-30);
-                border-bottom: 1px solid var(--line);
-            }
-
-            .service {
-                display: grid;
-                grid-template-columns: 110px 56px minmax(0, 1fr) minmax(0, 240px);
-                gap: 40px;
-                align-items: start;
-                padding: 40px 0;
-                border-bottom: 1px solid var(--line);
-                position: relative;
-            }
-
-            .service::before {
-                content: '';
-                position: absolute;
-                left: -20px;
-                top: 0;
-                bottom: 0;
-                width: 2px;
-                background: var(--orange);
-                transform: scaleY(0);
-                transform-origin: top;
-                transition: transform 0.5s var(--ease);
-            }
-
-            .service:hover::before { transform: scaleY(1); }
-
-            .service .perm {
-                font-size: 0.72rem;
-                color: var(--fg-45);
-                padding-top: 6px;
-                letter-spacing: 0.02em;
-            }
-
-            .service .idx {
-                font-size: 1.4rem;
-                font-weight: 300;
-                line-height: 1.3;
-                color: var(--fg-30);
-                transition: color 0.3s;
-            }
-
-            .service:hover .idx { color: var(--orange); }
-
-            .service h3 {
-                font-weight: 500;
-                font-size: clamp(1.3rem, 1.9vw, 1.7rem);
-                line-height: 1.2;
-                letter-spacing: -0.01em;
-                margin-bottom: 4px;
-                color: var(--fg);
-            }
-
-            .service .file {
+            .spec b {
                 display: block;
-                font-size: 0.7rem;
-                color: var(--fg-45);
-                margin-bottom: 16px;
+                font-size: 1.75rem;
+                font-weight: 500;
+                letter-spacing: -0.02em;
+                line-height: 1.1;
             }
 
-            .service p {
-                font-size: 0.92rem;
-                line-height: 1.8;
-                color: var(--fg-70);
-                max-width: 540px;
-                font-weight: 300;
+            .spec b sup {
+                font-size: 0.5em;
+                font-weight: 400;
+                vertical-align: top;
+                color: var(--grey);
+                margin-left: 2px;
             }
 
-            .service .tags {
-                list-style: none;
-                display: flex;
-                flex-wrap: wrap;
-                gap: 8px;
-                padding-top: 6px;
+            .spec small {
+                display: block;
+                margin-top: 6px;
+                font-size: 0.75rem;
+                color: var(--grey);
             }
 
-            .service .tags li {
-                font-size: 0.64rem;
-                letter-spacing: 0.06em;
-                padding: 4px 8px;
-                border: 1px solid var(--line);
-                color: var(--fg-70);
+            /* ══════════════════════════════════════════
+               Sections
+               ══════════════════════════════════════════ */
+            section.block {
+                padding: 120px 0;
             }
 
-            .service .tags li::before { content: '#'; color: var(--fg-30); }
+            .light {
+                background: var(--light);
+                color: var(--ink);
+            }
 
-            .ls-foot {
-                padding-top: 14px;
-                font-size: 0.72rem;
-                color: var(--fg-45);
+            .light .eyebrow { color: var(--grey-2); }
+
+            .sec-title {
+                font-weight: 500;
+                font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+                letter-spacing: -0.02em;
+                line-height: 1.15;
+                margin-top: 12px;
+            }
+
+            .sec-lead {
+                margin-top: 16px;
+                max-width: 560px;
+                font-size: 1rem;
+                line-height: 1.7;
+                color: var(--grey);
+            }
+
+            .light .sec-lead { color: var(--grey-2); }
+
+            .sec-head-center {
+                text-align: center;
                 margin-bottom: 72px;
             }
 
-            /* Panes: tree + process */
-            .panes {
-                display: grid;
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 20px;
-            }
-
-            .panes .log { font-size: 0.74rem; line-height: 1.8; }
-
-            .tree .dir { color: var(--fg); font-weight: 500; }
-            .tree .br { color: var(--fg-30); }
-            .tree .leaf { color: var(--fg-70); }
-
-            .yaml .key { color: var(--fg); }
-            .yaml .val { color: var(--fg-70); }
-            .yaml .str { color: var(--orange-60); }
-            .yaml .c { color: var(--fg-30); font-style: italic; }
+            .sec-head-center .sec-lead { margin-left: auto; margin-right: auto; }
 
             /* ══════════════════════════════════════════
-               Manifesto — cat MANIFESTO.md
+               Services — feature cards
                ══════════════════════════════════════════ */
-            .manifesto-sec .wrap {
+            .features {
                 display: grid;
-                grid-template-columns: minmax(0, 1fr) minmax(0, 320px);
-                gap: 80px;
-                align-items: center;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 24px;
             }
 
-            .manifesto .big {
+            .feature {
+                background: var(--white);
+                border-radius: 8px;
+                padding: 40px 32px 36px;
+                display: flex;
+                flex-direction: column;
+                min-height: 360px;
+                transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+            }
+
+            .feature:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 24px 48px rgba(23, 26, 32, 0.08);
+            }
+
+            .feature .num {
+                font-size: 0.75rem;
                 font-weight: 500;
-                font-size: clamp(2.2rem, 5vw, 4.2rem);
-                line-height: 1.05;
-                letter-spacing: -0.02em;
-                color: var(--fg);
-                margin-bottom: 10px;
-            }
-
-            .manifesto .big::before {
-                content: '# ';
-                color: var(--orange);
-            }
-
-            .manifesto .sub {
-                font-size: 0.68rem;
-                letter-spacing: 0.28em;
-                text-transform: uppercase;
-                color: var(--fg-45);
+                letter-spacing: 0.12em;
+                color: var(--grey);
                 margin-bottom: 40px;
             }
 
-            .manifesto blockquote {
-                border-left: 2px solid var(--fg-30);
-                padding-left: 22px;
-                max-width: 560px;
-                font-size: 1rem;
-                line-height: 1.85;
-                color: var(--fg-70);
-                font-weight: 300;
-                margin-bottom: 44px;
+            .feature h3 {
+                font-weight: 500;
+                font-size: 1.35rem;
+                letter-spacing: -0.015em;
+                line-height: 1.2;
+                margin-bottom: 14px;
             }
 
-            .env {
-                font-size: 0.8rem;
-                line-height: 1.9;
-                max-width: 560px;
-                white-space: pre-wrap;
+            .feature p {
+                font-size: 0.92rem;
+                line-height: 1.7;
+                color: var(--grey-2);
+                flex: 1;
             }
 
-            .env .key { color: var(--fg-45); }
-            .env .eq { color: var(--fg-30); }
-            .env .val { color: var(--fg); }
-
-            .poster {
-                justify-self: end;
-                width: 100%;
-                max-width: 320px;
-            }
-
-            .poster figure {
-                padding: 14px;
-                margin: 0;
-            }
-
-            .poster img {
-                width: 100%;
-                height: auto;
-                transition: transform 1s var(--ease);
-            }
-
-            .poster:hover img { transform: translateY(-4px); }
-
-            .poster figcaption {
+            .feature .stat {
+                margin-top: 32px;
+                padding-top: 20px;
+                border-top: 1px solid var(--light-2);
                 display: flex;
+                align-items: baseline;
                 justify-content: space-between;
-                padding: 14px 0 0;
-                margin-top: 14px;
-                font-size: 0.6rem;
-                letter-spacing: 0.14em;
-                text-transform: uppercase;
-                color: var(--fg-30);
-                border-top: 1px solid var(--line);
             }
+
+            .feature .stat b {
+                font-size: 1.4rem;
+                font-weight: 500;
+                letter-spacing: -0.02em;
+            }
+
+            .feature .stat small {
+                font-size: 0.75rem;
+                color: var(--grey);
+            }
+
+            /* ══════════════════════════════════════════
+               Specs table
+               ══════════════════════════════════════════ */
+            .specs-sec .wrap {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+                gap: 96px;
+                align-items: start;
+            }
+
+            .spec-table {
+                list-style: none;
+                border-top: 1px solid rgba(255, 255, 255, 0.14);
+            }
+
+            .spec-table li {
+                display: grid;
+                grid-template-columns: minmax(0, 200px) minmax(0, 1fr);
+                gap: 24px;
+                padding: 20px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+                font-size: 0.95rem;
+            }
+
+            .spec-table li span:first-child {
+                color: var(--grey);
+            }
+
+            .spec-table li span:last-child {
+                font-weight: 500;
+            }
+
+            .spec-table .tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .spec-table .tags i {
+                font-style: normal;
+                font-weight: 500;
+                font-size: 0.8rem;
+                padding: 5px 10px;
+                border-radius: 999px;
+                background: rgba(255, 255, 255, 0.08);
+            }
+
+            /* ══════════════════════════════════════════
+               Manifesto
+               ══════════════════════════════════════════ */
+            /* Scroll-scrubbed: the section is 320vh tall, its content pinned while --p goes 0 → 1 */
+            .manifesto {
+                --p: 0;
+                position: relative;
+                height: 320vh;
+                background: var(--black);
+            }
+
+            .m-pin {
+                position: sticky;
+                top: 0;
+                height: 100vh;
+                height: 100svh;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                perspective: 900px;
+            }
+
+            .m-pin::before {
+                content: '';
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: 120vmax;
+                height: 120vmax;
+                margin: -60vmax 0 0 -60vmax;
+                background: radial-gradient(closest-side, rgba(255, 90, 0, 0.18), transparent 70%);
+                transform: scale(calc(0.3 + var(--p) * 0.9));
+            }
+
+            .m-floor {
+                position: absolute;
+                left: -60%;
+                right: -60%;
+                top: 58%;
+                height: 60%;
+                background-image:
+                    linear-gradient(rgba(255, 90, 0, 0.4) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 90, 0, 0.4) 1px, transparent 1px);
+                background-size: 64px 64px;
+                background-position: 0 calc(var(--p) * 768px);
+                transform: rotateX(72deg);
+                transform-origin: 50% 0;
+                -webkit-mask-image: linear-gradient(transparent, #000 45%);
+                mask-image: linear-gradient(transparent, #000 45%);
+                opacity: calc(var(--p) * 1.8);
+            }
+
+            .manifesto .wrap { position: relative; }
+
+            .m-big {
+                font-weight: 500;
+                font-size: clamp(2.6rem, 8.4vw, 7.4rem);
+                letter-spacing: -0.035em;
+                line-height: 1.02;
+                transform-style: preserve-3d;
+            }
+
+            .m-big .mw { display: inline-block; white-space: nowrap; transform-style: preserve-3d; }
+            .m-big .ch { display: inline-block; will-change: transform, opacity, filter; }
+            .m-big .ch { transition: color 0.5s var(--ease), text-shadow 0.5s var(--ease); }
+
+            .m-big .ch.lit {
+                color: var(--orange);
+                text-shadow: 0 0 48px rgba(255, 90, 0, 0.55);
+            }
+
+            .m-verbs {
+                --v: 0;
+                margin-top: 24px;
+                font-size: 0.85rem;
+                letter-spacing: calc(0.22em + (1 - var(--v)) * 1.2em);
+                text-transform: uppercase;
+                color: var(--grey);
+                opacity: var(--v);
+            }
+
+            .m-text {
+                max-width: 560px;
+                margin: 40px auto 0;
+                font-size: 1.02rem;
+                line-height: 1.75;
+            }
+
+            .m-text .wd { opacity: 0.12; }
 
             /* ══════════════════════════════════════════
                Contact
                ══════════════════════════════════════════ */
-            .contact .wrap {
-                display: grid;
-                grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
-                gap: 80px;
-                align-items: end;
+            .contact {
+                text-align: center;
+                padding: 140px 0;
             }
 
-            .contact-title {
+            .contact .sec-title { font-size: clamp(2rem, 4.2vw, 3.2rem); }
+
+            .contact .btns { margin-top: 40px; }
+
+            .contact-meta {
+                margin-top: 56px;
+                display: flex;
+                justify-content: center;
+                gap: 48px;
+                font-size: 0.82rem;
+                color: var(--grey-2);
+            }
+
+            .contact-meta b {
                 font-weight: 500;
-                font-size: clamp(2.2rem, 4.8vw, 4rem);
-                line-height: 1.08;
-                letter-spacing: -0.02em;
-                margin-bottom: 40px;
-                color: var(--fg);
+                color: var(--ink);
             }
-
-            .contact-title em {
-                font-style: normal;
-                color: var(--orange);
-            }
-
-            #ping { min-height: 200px; }
-            #ping .ln { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-            #ping .t { color: var(--fg); }
 
             /* ══════════════════════════════════════════
                Footer
                ══════════════════════════════════════════ */
             footer {
-                padding: 36px 0 40px;
-                border-top: 1px solid var(--line);
-                font-size: 0.68rem;
-                color: var(--fg-45);
+                padding: 40px 0;
+                background: var(--black);
             }
 
             footer .wrap {
                 display: flex;
-                justify-content: space-between;
-                align-items: center;
-                gap: 24px;
+                justify-content: center;
+                gap: 32px;
                 flex-wrap: wrap;
+                font-size: 0.75rem;
+                color: var(--grey);
             }
 
-            footer .right {
-                display: flex;
-                align-items: center;
-                gap: 24px;
-            }
-
-            footer .exit { color: var(--fg-30); }
+            footer a:hover { color: var(--white); }
 
             /* ── Reveal ── */
             .reveal {
                 opacity: 0;
-                transform: translateY(16px);
-                transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+                transform: translateY(20px);
+                transition: opacity 1s var(--ease), transform 1s var(--ease);
             }
 
             .reveal.visible {
@@ -862,68 +667,44 @@
             .reveal[data-delay="2"] { transition-delay: 0.2s; }
             .reveal[data-delay="3"] { transition-delay: 0.3s; }
 
-            @keyframes fadeIn {
-                from { opacity: 0; }
-                to { opacity: 1; }
+            @keyframes riseIn {
+                from { opacity: 0; transform: translateY(16px); }
+                to { opacity: 1; transform: translateY(0); }
             }
 
             /* ══════════════════════════════════════════
                Responsive
                ══════════════════════════════════════════ */
             @media (max-width: 1000px) {
-                .hero .wrap {
-                    grid-template-columns: 1fr;
-                    gap: 48px;
-                }
-
-                .hero-side { justify-self: start; max-width: 560px; }
-                .ls-head { display: none; }
-
-                .service {
-                    grid-template-columns: 100px 50px minmax(0, 1fr);
-                }
-
-                .service .tags { grid-column: 3; }
-                .manifesto-sec .wrap { grid-template-columns: 1fr; gap: 56px; }
-                .poster { justify-self: start; max-width: 260px; }
-                .contact .wrap { grid-template-columns: 1fr; gap: 48px; }
-                .tmux-right .hide-md { display: none; }
+                .features { grid-template-columns: 1fr; }
+                .feature { min-height: 0; }
+                .specs-sec .wrap { grid-template-columns: 1fr; gap: 48px; }
+                .menu { display: none; }
+                header .wrap { grid-template-columns: 1fr auto; }
             }
 
             @media (max-width: 720px) {
-                :root { --gutter: 22px; }
+                :root { --gutter: 24px; }
 
-                section { padding: 96px 0; }
+                header { height: 56px; }
+                .logo img { height: 18px; }
+                .menu-right .pill span { display: none; }
 
-                .menu { display: none; }
-                .session { border-right: 0; margin-right: 0; }
-                .tmux-right .hide-sm { display: none; }
+                .hero { padding: 100px 0 40px; }
+                .hero::before { top: 64%; }
+                .hero-visual { min-height: 40vh; }
+                .specs { gap: 28px; }
+                .spec b { font-size: 1.35rem; }
+                .btn { min-width: 0; width: 100%; }
+                .btns { flex-direction: column; width: 100%; gap: 12px; }
 
-                .hero { padding: 110px 0 80px; min-height: 0; }
-                .hero-title { font-size: clamp(2.2rem, 11vw, 3.2rem); }
-                .log { font-size: 0.66rem; }
-                #shell, #access, #ping { min-height: 0; }
-                #access .ms { display: none; }
-                .scroll-hint { display: none; }
+                section.block { padding: 88px 0; }
+                .sec-head-center { margin-bottom: 44px; }
 
-                .sec-head { margin-bottom: 36px; font-size: 0.84rem; }
-                .sec-head .cmt { margin-left: 0; width: 100%; }
+                .spec-table li { grid-template-columns: 1fr; gap: 6px; padding: 16px 0; }
 
-                .service {
-                    grid-template-columns: 1fr;
-                    gap: 10px;
-                    padding: 32px 0;
-                }
-
-                .service::before { left: -12px; }
-                .service .perm { order: 1; padding-top: 0; }
-                .service .idx { order: 0; }
-                .service .tags { grid-column: auto; }
-
-                .panes { grid-template-columns: 1fr; }
-                .ls-foot { margin-bottom: 48px; }
-
-                footer .right { width: 100%; justify-content: space-between; }
+                .contact { padding: 100px 0; }
+                .contact-meta { flex-direction: column; gap: 12px; }
             }
 
             @media (prefers-reduced-motion: reduce) {
@@ -935,43 +716,36 @@
                     transition-duration: 0.01ms !important;
                 }
 
-                .hero-title, .scroll-hint, .reveal { opacity: 1; transform: none; }
-                .cursor, .hero-title .caret { animation: none; }
+                .hero-head .eyebrow, .hero-sub, .hero-foot, .reveal {
+                    opacity: 1;
+                    transform: none;
+                }
+
+                .manifesto { height: auto; }
+                .m-pin { position: relative; height: auto; padding: 140px 0; }
             }
         </style>
     </head>
 
     <body>
 
-        <div class="grain" aria-hidden="true"></div>
-        <div class="scan" aria-hidden="true"></div>
-
-        <!-- tmux status bar -->
+        <!-- Header -->
         <header id="header">
             <div class="wrap">
-                <div class="tmux-left">
-                    <a href="#" class="session" aria-label="SNOWCODES — Accueil">
-                        <picture>
-                            <source srcset="assets/web/logo.webp" type="image/webp">
-                            <img src="assets/web/logo.png" alt="SNOWCODES" width="1200" height="530">
-                        </picture>
-                        <span class="path">~/snowcodes</span>
-                    </a>
-                    <ul class="menu" id="menu">
-                        <li><a href="#top" data-sec="top" class="active"><span class="n">0:</span>zsh</a></li>
-                        <li><a href="#services" data-sec="services"><span class="n">1:</span>services</a></li>
-                        <li><a href="#manifesto" data-sec="manifesto"><span class="n">2:</span>manifesto</a></li>
-                        <li><a href="#contact" data-sec="contact"><span class="n">3:</span>contact</a></li>
-                    </ul>
-                </div>
-                <div class="tmux-right">
-                    <span class="hide-md"><span class="dot"></span>eth0 up</span>
-                    <span class="sep hide-md">|</span>
-                    <span class="hide-sm" id="load">load 0.00</span>
-                    <span class="sep hide-sm">|</span>
-                    <span id="clock">--:--:--</span>
-                    <span class="sep hide-sm">|</span>
-                    <span class="hide-sm" id="date">----‑--‑--</span>
+                <a href="#" class="logo" aria-label="SNOWCODES — Accueil">
+                    <picture>
+                        <source srcset="assets/web/logo.webp" type="image/webp">
+                        <img src="assets/web/logo.png" alt="SNOWCODES" width="1200" height="530">
+                    </picture>
+                </a>
+                <ul class="menu">
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#specs">Caractéristiques</a></li>
+                    <li><a href="#manifesto">Manifeste</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="menu-right">
+                    <a href="#contact" class="pill"><i></i><span>Disponible</span></a>
                 </div>
             </div>
         </header>
@@ -979,202 +753,117 @@
         <main>
             <!-- Hero -->
             <section class="hero" id="top">
-                <div class="wrap">
-                    <div>
-                        <p class="term-line" aria-live="polite"><span class="prompt">$</span> <span
-                                id="typed"></span><span class="cursor" aria-hidden="true"></span></p>
-                        <h1 class="hero-title glitch" id="title" data-text="Code.&#10;Create.&#10;Explore_">
-                            Code.<br>Create.<br>Explore<span class="caret" aria-hidden="true">_</span></h1>
-                        <p class="hero-sub">Nous concevons des solutions logicielles sur mesure, du web au mobile, avec
-                            une exigence simple : chaque détail compte.</p>
-                        <div class="hero-meta">
-                            <span class="rule"></span>
-                            <span>Internet Development Studio</span>
-                            <span>est. 2021</span>
-                            <span>France</span>
-                        </div>
-                        <a href="#services" class="btn">./services --list</a>
-                    </div>
-                    <div class="hero-side">
-                        <div class="hero-logo">
-                            <picture>
-                                <source srcset="assets/web/logo.webp" type="image/webp">
-                                <img src="assets/web/logo.png" alt="SNOWCODES" width="1200" height="530" fetchpriority="high">
-                            </picture>
-                        </div>
-                        <div class="window">
-                            <div class="window-bar"><i></i><i></i><i></i><em>guest@snowcodes — zsh — <b>80×24</b></em></div>
-                            <pre class="log" id="shell" aria-hidden="true"></pre>
-                        </div>
-                        <div class="window">
-                            <div class="window-bar"><i></i><i></i><i></i><em>tail -f /var/log/snowcodes/access.log</em></div>
-                            <pre class="log" id="access" aria-hidden="true"></pre>
-                        </div>
-                    </div>
+                <canvas id="swarm" aria-hidden="true"></canvas>
+                <div class="wrap hero-head">
+                    <p class="eyebrow">Internet Development Studio</p>
+                    <h1 class="hero-title" aria-label="Code. Create. Explore."><span class="w" data-w="code" aria-hidden="true">Code.</span> <span class="w" data-w="create" aria-hidden="true">Create.</span> <span class="w" data-w="explore" aria-hidden="true">Explore.</span></h1>
+                    <p class="hero-sub">Solutions logicielles sur mesure, du web au mobile.</p>
                 </div>
-                <div class="scroll-hint" aria-hidden="true">
-                    <span>scroll</span>
-                    <span class="line"></span>
+
+                <div class="hero-visual" id="stage" role="img"
+                    aria-label="Animation : des milliers de pixels s'assemblent pour former le logo SNOWCODES">
+                </div>
+
+                <div class="wrap hero-foot">
+                    <div class="specs">
+                        <div class="spec"><b>2021</b><small>Depuis</small></div>
+                        <div class="spec"><b>&lt;48<sup>h</sup></b><small>Délai de réponse</small></div>
+                        <div class="spec"><b>100<sup>%</sup></b><small>Sur mesure</small></div>
+                    </div>
+                    <div class="btns">
+                        <a href="#contact" class="btn btn-primary">Nous écrire</a>
+                        <a href="#services" class="btn btn-light">Découvrir</a>
+                    </div>
                 </div>
             </section>
 
             <!-- Services -->
-            <section class="services" id="services">
+            <section class="block light" id="services">
                 <div class="wrap">
-                    <div class="sec-head reveal">
-                        <span class="prompt">$</span>
-                        <h2>ls -la ./services</h2>
-                        <span class="cmt">// ce que nous faisons</span>
+                    <div class="sec-head-center reveal">
+                        <p class="eyebrow">Services</p>
+                        <h2 class="sec-title">Conçu pour durer.</h2>
+                        <p class="sec-lead">Trois expertises, une seule exigence : chaque détail compte, du premier
+                            commit à la mise en production.</p>
                     </div>
 
-                    <div class="ls-head reveal">
-                        <span>mode</span><span>id</span><span>name</span><span>tags</span>
-                    </div>
-
-                    <article class="service reveal">
-                        <span class="perm">-rwxr-xr-x</span>
-                        <span class="idx">01</span>
-                        <div>
+                    <div class="features">
+                        <article class="feature reveal">
+                            <span class="num">01</span>
                             <h3>Développement sur mesure</h3>
-                            <span class="file">custom_development.sh</span>
                             <p>Développement web et mobile axé sur la qualité et la performance. Nous travaillons avec
                                 précision, en anticipant les évolutions futures pour des solutions pérennes dès le
                                 premier jour.</p>
-                        </div>
-                        <ul class="tags">
-                            <li>web</li>
-                            <li>mobile</li>
-                            <li>api</li>
-                            <li>architecture</li>
-                        </ul>
-                    </article>
+                            <div class="stat"><b>Web · Mobile</b><small>API · Architecture</small></div>
+                        </article>
 
-                    <article class="service reveal" data-delay="1">
-                        <span class="perm">-rwxr-xr-x</span>
-                        <span class="idx">02</span>
-                        <div>
+                        <article class="feature reveal" data-delay="1">
+                            <span class="num">02</span>
                             <h3>Maîtrise technologique</h3>
-                            <span class="file">tech_stack.sh</span>
                             <p>Mobile avec Flutter, web avec Angular et React. Plus de 10 ans d'expérience et l'IA
                                 intégrée à nos process pour livrer des solutions performantes sur chaque plateforme.</p>
-                        </div>
-                        <ul class="tags">
-                            <li>flutter</li>
-                            <li>angular</li>
-                            <li>react</li>
-                            <li>ia</li>
-                            <li>cloud</li>
-                        </ul>
-                    </article>
+                            <div class="stat"><b>10+ ans</b><small>Flutter · Angular · React · IA</small></div>
+                        </article>
 
-                    <article class="service reveal" data-delay="2">
-                        <span class="perm">-rwxr-xr-x</span>
-                        <span class="idx">03</span>
-                        <div>
+                        <article class="feature reveal" data-delay="2">
+                            <span class="num">03</span>
                             <h3>Accompagnement continu</h3>
-                            <span class="file">support.sh</span>
                             <p>De la première ligne de code à la mise en production. Un suivi rigoureux, itératif,
                                 aligné sur vos objectifs.</p>
-                        </div>
-                        <ul class="tags">
-                            <li>conseil</li>
-                            <li>itératif</li>
-                            <li>production</li>
-                            <li>support</li>
-                        </ul>
-                    </article>
-
-                    <p class="ls-foot reveal" data-delay="3">total 3 <span class="cmt">// tout est exécutable</span></p>
-
-                    <div class="panes">
-                        <div class="window reveal" data-delay="1">
-                            <div class="window-bar"><i></i><i></i><i></i><em>tree ./stack</em></div>
-<pre class="log raw tree" aria-label="Stack technique"><span class="ln"><span class="dir">stack</span></span>
-<span class="ln"><span class="br">├── </span><span class="dir">mobile</span></span>
-<span class="ln"><span class="br">│   └── </span><span class="leaf">flutter</span></span>
-<span class="ln"><span class="br">├── </span><span class="dir">web</span></span>
-<span class="ln"><span class="br">│   ├── </span><span class="leaf">angular</span></span>
-<span class="ln"><span class="br">│   └── </span><span class="leaf">react</span></span>
-<span class="ln"><span class="br">├── </span><span class="dir">backend</span></span>
-<span class="ln"><span class="br">│   ├── </span><span class="leaf">api</span></span>
-<span class="ln"><span class="br">│   └── </span><span class="leaf">cloud</span></span>
-<span class="ln"><span class="br">└── </span><span class="dir">ai</span></span>
-<span class="ln"><span class="br">    └── </span><span class="leaf">assist</span></span>
-<span class="ln"> </span>
-<span class="ln"><span class="br">5 directories, 6 files</span></span></pre>
-                        </div>
-                        <div class="window reveal" data-delay="2">
-                            <div class="window-bar"><i></i><i></i><i></i><em>cat process.yml</em></div>
-<pre class="log raw yaml" aria-label="Notre process"><span class="ln"><span class="c"># comment on travaille</span></span>
-<span class="ln"><span class="key">discovery</span>: <span class="val">cadrage · ateliers · priorités</span></span>
-<span class="ln"><span class="key">design</span>:    <span class="val">architecture · maquettes</span></span>
-<span class="ln"><span class="key">build</span>:     <span class="val">itérations courtes · revues</span></span>
-<span class="ln"><span class="key">ship</span>:      <span class="val">ci/cd · monitoring</span></span>
-<span class="ln"><span class="key">support</span>:   <span class="str">"&lt; 48 h"</span></span>
-<span class="ln"> </span>
-<span class="ln"><span class="key">rules</span>:</span>
-<span class="ln">  - <span class="val">rien de superflu</span></span>
-<span class="ln">  - <span class="val">rien d'oublié</span></span>
-<span class="ln">  - <span class="str">"everything matters"</span></span></pre>
-                        </div>
+                            <div class="stat"><b>&lt; 48 h</b><small>Conseil · Support · Production</small></div>
+                        </article>
                     </div>
                 </div>
             </section>
 
-            <!-- Manifesto -->
-            <section class="manifesto-sec" id="manifesto">
+            <!-- Specs -->
+            <section class="block specs-sec" id="specs">
                 <div class="wrap">
-                    <div class="manifesto">
-                        <div class="sec-head reveal">
-                            <span class="prompt">$</span>
-                            <h2>cat MANIFESTO.md</h2>
-                        </div>
-                        <p class="big reveal" data-delay="1">Everything matters.</p>
-                        <p class="sub reveal" data-delay="1">Code · Create · Explore</p>
-                        <blockquote class="reveal" data-delay="2">Trois verbes, une seule règle. Nous construisons des
-                            logiciels comme on façonne un objet : avec patience, retenue et attention à chaque détail.
-                            Rien de superflu, rien d'oublié.</blockquote>
-                        <div class="sec-head reveal" data-delay="3" style="margin-bottom:12px">
-                            <span class="prompt">$</span>
-                            <h2>printenv | grep SNOWCODES</h2>
-                        </div>
-<pre class="env reveal" data-delay="3"><span class="key">SNOWCODES_SINCE</span><span class="eq">=</span><span class="val">2021</span>
-<span class="key">SNOWCODES_LOCATION</span><span class="eq">=</span><span class="val">FR</span>
-<span class="key">SNOWCODES_RESPONSE_TIME</span><span class="eq">=</span><span class="val">&lt;48h</span>
-<span class="key">SNOWCODES_MOTTO</span><span class="eq">=</span><span class="val">"everything matters"</span></pre>
+                    <div class="reveal">
+                        <p class="eyebrow">Caractéristiques</p>
+                        <h2 class="sec-title">Sous le capot.</h2>
+                        <p class="sec-lead">Une stack éprouvée, choisie pour la performance et la longévité de vos
+                            produits.</p>
                     </div>
-                    <div class="poster reveal" data-delay="2">
-                        <div class="window">
-                            <div class="window-bar"><i></i><i></i><i></i><em>poster.png</em></div>
-                            <figure>
-                                <picture>
-                                    <source srcset="assets/web/full_logo.webp" type="image/webp">
-                                    <img src="assets/web/full_logo.png" alt="SNOWCODES — affiche" width="1298"
-                                        height="1800" loading="lazy">
-                                </picture>
-                                <figcaption><span>1298 × 1800</span><span>No. 01</span></figcaption>
-                            </figure>
-                        </div>
+                    <ul class="spec-table reveal" data-delay="1">
+                        <li><span>Mobile</span><span class="tags"><i>Flutter</i></span></li>
+                        <li><span>Web</span><span class="tags"><i>Angular</i><i>React</i></span></li>
+                        <li><span>Backend</span><span class="tags"><i>API</i><i>Cloud</i><i>Architecture</i></span></li>
+                        <li><span>Intelligence artificielle</span><span>Intégrée à nos process</span></li>
+                        <li><span>Méthode</span><span>Itérative, du cadrage à la production</span></li>
+                        <li><span>Délai de réponse</span><span>Moins de 48 heures</span></li>
+                        <li><span>Base</span><span>France · depuis 2021</span></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Manifesto -->
+            <section class="manifesto" id="manifesto">
+                <div class="m-pin">
+                    <div class="m-floor" aria-hidden="true"></div>
+                    <div class="wrap">
+                        <p class="m-big" aria-label="Everything matters."><span class="mw" aria-hidden="true">Everything</span> <span class="mw em" aria-hidden="true">matters.</span></p>
+                        <p class="m-verbs">Code · Create · Explore</p>
+                        <p class="m-text">Trois verbes, une seule règle. Nous construisons des logiciels comme on façonne un
+                            objet : avec patience, retenue et attention à chaque détail. Rien de superflu, rien d'oublié.</p>
                     </div>
                 </div>
             </section>
 
             <!-- Contact -->
-            <section class="contact" id="contact">
+            <section class="contact light" id="contact">
                 <div class="wrap">
-                    <div>
-                        <div class="sec-head reveal">
-                            <span class="prompt">$</span>
-                            <h2>./contact --send</h2>
-                        </div>
-                        <h2 class="contact-title reveal" data-delay="1">Parlons de<br>votre <em>projet.</em></h2>
-                        <a href="#" class="btn reveal" data-delay="2" id="contact-btn">mail</a>
+                    <p class="eyebrow reveal">Contact</p>
+                    <h2 class="sec-title reveal" data-delay="1">Parlons de votre projet.</h2>
+                    <p class="sec-lead reveal" data-delay="1" style="margin-left:auto;margin-right:auto">Décrivez-nous
+                        votre besoin, nous revenons vers vous sous 48 heures.</p>
+                    <div class="btns reveal" data-delay="2">
+                        <a href="#" class="btn btn-dark" id="contact-btn">Nous écrire</a>
                     </div>
-                    <div class="contact-side reveal" data-delay="2">
-                        <div class="window">
-                            <div class="window-bar"><i></i><i></i><i></i><em>ping snowcodes.fr</em></div>
-                            <pre class="log raw" id="ping" aria-hidden="true"></pre>
-                        </div>
+                    <div class="contact-meta reveal" data-delay="3">
+                        <span><b>Snowcodes</b></span>
+                        <span>Depuis <b>2021</b></span>
+                        <span>Base <b>France</b></span>
                     </div>
                 </div>
             </section>
@@ -1182,77 +871,32 @@
 
         <footer>
             <div class="wrap">
-                <span>&copy; 2025 snowcodes — tous droits réservés</span>
-                <div class="right">
-                    <span>pid 2021</span>
-                    <span>code · create · explore</span>
-                    <span class="exit">[ exit 0 ]</span>
-                </div>
+                <span>Snowcodes &copy; 2025</span>
+                <a href="#services">Services</a>
+                <a href="#specs">Caractéristiques</a>
+                <a href="#contact">Contact</a>
+                <span>Code · Create · Explore</span>
             </div>
         </footer>
 
         <script>
             (function () {
-                var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-                // ── Helpers ──
-                function pad(n) { return n < 10 ? '0' + n : '' + n; }
-                function rnd(a, b) { return a + Math.random() * (b - a); }
-                function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
-                function el(tag, cls, text) {
-                    var e = document.createElement(tag);
-                    if (cls) e.className = cls;
-                    if (text != null) e.textContent = text;
-                    return e;
-                }
-                function stamp(d) {
-                    return pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
-                }
-
                 // ── Email obfuscation ──
                 var p = ['Y29udGFjdA==', 'c25vd2NvZGVz', 'ZnI='];
                 var addr = atob(p[0]) + '@' + atob(p[1]) + '.' + atob(p[2]);
                 var btn = document.getElementById('contact-btn');
                 if (btn) {
-                    btn.textContent = 'mail ' + addr;
                     btn.addEventListener('click', function (e) {
                         e.preventDefault();
                         window.location.href = 'mailto:' + addr;
                     });
                 }
 
-                // ── tmux bar: clock, date, load ──
-                var clock = document.getElementById('clock');
-                var date = document.getElementById('date');
-                var load = document.getElementById('load');
-                var loadVal = 0.42;
-                function tick() {
-                    var d = new Date();
-                    clock.textContent = stamp(d);
-                    date.textContent = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
-                }
-                tick();
-                setInterval(tick, 1000);
-                setInterval(function () {
-                    loadVal = Math.max(0.08, Math.min(1.6, loadVal + rnd(-0.12, 0.12)));
-                    load.textContent = 'load ' + loadVal.toFixed(2);
-                }, 2500);
-                load.textContent = 'load ' + loadVal.toFixed(2);
-
-                // ── tmux bar: active window follows scroll ──
-                var links = document.querySelectorAll('#menu a');
-                var secs = ['top', 'services', 'manifesto', 'contact'].map(function (id) {
-                    return document.getElementById(id);
-                });
-                var secObs = new IntersectionObserver(function (entries) {
-                    entries.forEach(function (entry) {
-                        if (!entry.isIntersecting) return;
-                        links.forEach(function (a) {
-                            a.classList.toggle('active', a.getAttribute('data-sec') === entry.target.id);
-                        });
-                    });
-                }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
-                secs.forEach(function (s) { if (s) secObs.observe(s); });
+                // ── Header on scroll ──
+                var header = document.getElementById('header');
+                var onScroll = function () { header.classList.toggle('scrolled', window.scrollY > 24); };
+                window.addEventListener('scroll', onScroll, { passive: true });
+                onScroll();
 
                 // ── Scroll reveal ──
                 var io = new IntersectionObserver(function (entries) {
@@ -1279,154 +923,250 @@
                         if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
                     });
                 });
+            })();
+        </script>
+        <script>
+            // ══════════════════════════════════════════
+            //  Motion — live, in-page, no video
+            // ══════════════════════════════════════════
+            (function () {
+                var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+                var clamp = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
+                var outCubic = function (v) { return 1 - Math.pow(1 - v, 3); };
+                var split = function (el, cls, re) {
+                    var parts = el.textContent.split(re), out = [];
+                    el.textContent = '';
+                    parts.forEach(function (s) {
+                        if (!s.trim()) { el.appendChild(document.createTextNode(s)); return; }
+                        var e = document.createElement('span');
+                        e.className = cls; e.textContent = s; el.appendChild(e); out.push(e);
+                    });
+                    return out;
+                };
 
-                // ── Typewriter: "Hello, friend." ──
-                var typed = document.getElementById('typed');
-                var title = document.getElementById('title');
-                var lines = ['ssh guest@snowcodes.fr', 'Hello, friend.'];
+                // ── Hero title: per-letter mask reveal ──
+                var ci = 0;
+                document.querySelectorAll('.hero-title .w').forEach(function (w) {
+                    split(w, 'ch', '').forEach(function (c) { c.style.setProperty('--i', ci++); });
+                });
 
-                function typeLine(text, i, done) {
-                    if (i <= text.length) {
-                        typed.textContent = text.slice(0, i);
-                        setTimeout(function () { typeLine(text, i + 1, done); }, 40 + Math.random() * 50);
-                    } else {
-                        done();
+                // ── Magnetic buttons ──
+                if (!reduce) document.querySelectorAll('.btn').forEach(function (b) {
+                    b.addEventListener('pointermove', function (e) {
+                        if (e.pointerType !== 'mouse') return;
+                        var r = b.getBoundingClientRect();
+                        b.style.transform = 'translate(' + (e.clientX - r.left - r.width / 2) * 0.2 + 'px,' + (e.clientY - r.top - r.height / 2) * 0.35 + 'px)';
+                    });
+                    b.addEventListener('pointerleave', function () { b.style.transform = ''; });
+                });
+
+                // ── Hero swarm: scattered pixels swirl in and assemble the logo, then hold.
+                // Each pixel is drawn stretched along its velocity (shutter blur); cursor repels, click sends a shockwave.
+                var hero = document.querySelector('.hero'), stage = document.getElementById('stage');
+                var cv = document.getElementById('swarm'), ctx = cv.getContext('2d');
+                var g1 = document.createElement('canvas'), g1x = g1.getContext('2d');   // bloom, 1/4 res
+                var g2 = document.createElement('canvas'), g2x = g2.getContext('2d');   // wide bloom, 1/12 res
+                var STEP = 1000 / 60, COLORS = ['#FF5A00', '#FF8A3D', '#FFE4D1', 'rgba(255, 140, 80, 0.35)'];
+                var logo = new Image();
+                logo.src = 'assets/web/logo.png';
+
+                var W, H, dpr, cx, cy, size, N = 0, M = 0, pts;
+                var x, y, vx, vy, hx, hy, heat, bucket;
+                var mx = -1e4, my = -1e4, waves = [], t0 = 0, last = 0, acc = 0, running = false;
+
+                // Logo letters are transparent cut-outs in the orange block: sample those, on a grid.
+                function sample(sW, sH, ox, oy) {
+                    var w = Math.round(sW), h = Math.round(sH), step = Math.max(3, Math.min(8, Math.round(sW / 150)));
+                    var c = document.createElement('canvas'), out = [];
+                    c.width = w; c.height = h;
+                    var g = c.getContext('2d', { willReadFrequently: true });
+                    var k = Math.min(w * 0.8 / logo.naturalWidth, h * 0.92 / logo.naturalHeight) || 0;
+                    var lw = logo.naturalWidth * k, lh = logo.naturalHeight * k;
+                    var L = (w - lw) / 2 + lw * 0.03, R = L + lw * 0.94, T = (h - lh) / 2 + lh * 0.05, B = T + lh * 0.9;
+                    size = step * 0.78;
+                    try {
+                        g.drawImage(logo, (w - lw) / 2, (h - lh) / 2, lw, lh);
+                        var d = g.getImageData(0, 0, w, h).data;
+                    } catch (e) { return out; }                          // file:// taints the canvas: dust only
+                    for (var j = step >> 1; j < h; j += step)
+                        for (var i = step >> 1; i < w; i += step)
+                            if (i > L && i < R && j > T && j < B && d[(j * w + i) * 4 + 3] < 100) out.push(ox + i, oy + j);
+                    return out;
+                }
+
+                function layout() {
+                    var r = hero.getBoundingClientRect(), s = stage.getBoundingClientRect();
+                    dpr = Math.min(2, window.devicePixelRatio || 1);
+                    W = r.width; H = r.height;
+                    cv.width = W * dpr | 0; cv.height = H * dpr | 0;
+                    g1.width = W / 4 | 0; g1.height = H / 4 | 0;
+                    g2.width = W / 12 | 0; g2.height = H / 12 | 0;
+                    g1x.imageSmoothingQuality = g2x.imageSmoothingQuality = 'high';
+                    cx = s.left - r.left + s.width / 2; cy = s.top - r.top + s.height / 2;
+                    pts = sample(s.width, s.height, s.left - r.left, s.top - r.top);
+                    M = pts.length / 2; N = M + Math.round(W * H / 5000);
+                    [x, y, vx, vy, hx, hy, heat] = Array.from({ length: 7 }, function () { return new Float32Array(N); });
+                    bucket = new Uint8Array(N);
+                    for (var i = 0; i < N; i++) {
+                        x[i] = hx[i] = Math.random() * W; y[i] = hy[i] = Math.random() * H;
+                        if (i < M) {                                     // swirl in around the stage centre
+                            var dx = x[i] - cx, dy = y[i] - cy, d = Math.sqrt(dx * dx + dy * dy) + 1;
+                            vx[i] = -dy / d * 14; vy[i] = dx / d * 14; heat[i] = 0.6;
+                        }
                     }
                 }
 
-                if (reduced) {
-                    typed.textContent = lines[1];
-                    title.classList.add('on');
-                } else {
-                    setTimeout(function () {
-                        typeLine(lines[0], 0, function () {
-                            setTimeout(function () {
-                                typed.textContent = '';
-                                typeLine(lines[1], 0, function () {
-                                    title.classList.add('on');
-                                    setTimeout(triggerGlitch, 600);
-                                });
-                            }, 500);
+                function physics(t) {
+                    var R = 110;
+                    for (var i = 0; i < N; i++) {
+                        var X, Y, k, damp;
+                        if (i < M) { X = pts[2 * i]; Y = pts[2 * i + 1]; k = 0.035; damp = 0.9; }
+                        else { X = hx[i] + Math.sin(t * 0.3 + i) * 30; Y = hy[i] + Math.cos(t * 0.23 + i * 1.7) * 30; k = 0.004; damp = 0.95; }
+                        vx[i] = (vx[i] + (X - x[i]) * k) * damp;
+                        vy[i] = (vy[i] + (Y - y[i]) * k) * damp;
+                        var dx = x[i] - mx, dy = y[i] - my, d2 = dx * dx + dy * dy;
+                        if (d2 < R * R) {
+                            var d = Math.sqrt(d2) + 0.01, f = (1 - d / R) * 2.4;
+                            vx[i] += dx / d * f; vy[i] += dy / d * f;
+                            if (heat[i] < 1 - d / R) heat[i] = 1 - d / R;
+                        }
+                        x[i] += vx[i]; y[i] += vy[i];
+                        heat[i] *= 0.95;
+                    }
+                }
+
+                function shockwave(X, Y, t) {
+                    for (var i = 0; i < N; i++) {
+                        var dx = x[i] - X, dy = y[i] - Y, d = Math.sqrt(dx * dx + dy * dy) + 0.01, f = 26 * Math.exp(-d / 160);
+                        vx[i] += dx / d * f; vy[i] += dy / d * f;
+                        heat[i] = Math.max(heat[i], Math.exp(-d / 220));
+                    }
+                    waves.push({ x: X, y: Y, t: t });
+                }
+
+                function render(t) {
+                    var i, b;
+                    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                    ctx.clearRect(0, 0, W, H);
+                    for (i = 0; i < N; i++) {
+                        var hot = Math.max(heat[i], Math.min(1, Math.sqrt(vx[i] * vx[i] + vy[i] * vy[i]) / 14));
+                        bucket[i] = i >= M ? 3 : hot > 0.6 ? 2 : hot > 0.25 ? 1 : 0;
+                    }
+                    // Quad per pixel, stretched along velocity and thinned to keep its area.
+                    // Same winding everywhere → one fill per colour.
+                    for (b = 0; b < 4; b++) {
+                        ctx.beginPath();
+                        for (i = 0; i < N; i++) {
+                            if (bucket[i] !== b) continue;
+                            var s = i >= M ? size * 0.35 : size;
+                            var sp = Math.sqrt(vx[i] * vx[i] + vy[i] * vy[i]), len = Math.max(s, sp * 1.8);
+                            var ux = sp > 0.01 ? vx[i] / sp : 1, uy = sp > 0.01 ? vy[i] / sp : 0;
+                            var hl = len / 2, hw = s * Math.sqrt(s / len) / 2;
+                            ctx.moveTo(x[i] - ux * hl - uy * hw, y[i] - uy * hl + ux * hw);
+                            ctx.lineTo(x[i] + ux * hl - uy * hw, y[i] + uy * hl + ux * hw);
+                            ctx.lineTo(x[i] + ux * hl + uy * hw, y[i] + uy * hl - ux * hw);
+                            ctx.lineTo(x[i] - ux * hl + uy * hw, y[i] - uy * hl - ux * hw);
+                        }
+                        ctx.fillStyle = COLORS[b];
+                        ctx.fill();
+                    }
+                    waves = waves.filter(function (w) { return t - w.t < 0.9; });
+                    waves.forEach(function (w) {
+                        var k = (t - w.t) / 0.9;
+                        ctx.beginPath();
+                        ctx.arc(w.x, w.y, 20 + outCubic(k) * 520, 0, 6.2832);
+                        ctx.lineWidth = 1.5 * (1 - k) + 0.5;
+                        ctx.strokeStyle = 'rgba(255, 138, 61,' + (1 - k) + ')';
+                        ctx.stroke();
+                    });
+
+                    // Bloom: two downsampled copies added back on top
+                    ctx.setTransform(1, 0, 0, 1, 0, 0);
+                    g1x.clearRect(0, 0, g1.width, g1.height); g1x.drawImage(cv, 0, 0, g1.width, g1.height);
+                    g2x.clearRect(0, 0, g2.width, g2.height); g2x.drawImage(g1, 0, 0, g2.width, g2.height);
+                    ctx.globalCompositeOperation = 'lighter';
+                    ctx.globalAlpha = 0.5; ctx.drawImage(g1, 0, 0, cv.width, cv.height);
+                    ctx.globalAlpha = 0.75; ctx.drawImage(g2, 0, 0, cv.width, cv.height);
+                    ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
+                }
+
+                function frame(now) {
+                    if (!running) return;
+                    requestAnimationFrame(frame);
+                    var t = (now - t0) / 1000;
+                    acc = Math.min(acc + now - last, 100); last = now;
+                    for (; acc >= STEP; acc -= STEP) physics(t);
+                    render(t);
+                }
+
+                function still() {                                       // reduced motion: the logo, formed, no loop
+                    for (var i = 0; i < M; i++) { x[i] = pts[2 * i]; y[i] = pts[2 * i + 1]; vx[i] = vy[i] = heat[i] = 0; }
+                    render(0);
+                }
+
+                function start() {
+                    t0 = last = performance.now();
+                    layout();
+                    if (reduce) still();
+                    var pending = false, width = W;
+                    new ResizeObserver(function () {                     // re-assemble only when the width changes
+                        if (pending || hero.getBoundingClientRect().width === width) return;
+                        pending = true;
+                        requestAnimationFrame(function () { pending = false; layout(); width = W; if (reduce) still(); });
+                    }).observe(hero);
+                    if (reduce) return;
+                    new IntersectionObserver(function (es) {
+                        running = es[0].isIntersecting;
+                        if (running) { last = performance.now(); requestAnimationFrame(frame); }
+                    }).observe(hero);
+                    hero.addEventListener('pointermove', function (e) {
+                        var r = hero.getBoundingClientRect();
+                        mx = e.clientX - r.left; my = e.clientY - r.top;
+                    });
+                    hero.addEventListener('pointerleave', function () { mx = my = -1e4; });
+                    stage.addEventListener('pointerdown', function (e) {
+                        var r = hero.getBoundingClientRect();
+                        shockwave(e.clientX - r.left, e.clientY - r.top, (performance.now() - t0) / 1000);
+                    });
+                }
+
+                Promise.race([logo.decode().catch(function () {}), new Promise(function (r) { setTimeout(r, 2500); })]).then(start);
+
+                // ── Manifesto: scroll-scrubbed kinetic type ──
+                var sec = document.getElementById('manifesto'), chars = [], j = 0;
+                sec.querySelectorAll('.m-big .mw').forEach(function (w) {
+                    var lit = w.classList.contains('em');
+                    split(w, 'ch', '').forEach(function (c) {
+                        chars.push({
+                            el: c, lit: lit ? j++ : -1,
+                            dx: (Math.random() - 0.5) * 1000, dy: (Math.random() - 0.5) * 700, dz: -300 - Math.random() * 1200,
+                            rx: (Math.random() - 0.5) * 220, ry: (Math.random() - 0.5) * 220, rz: (Math.random() - 0.5) * 90
                         });
-                    }, 400);
+                    });
+                });
+                var wds = split(sec.querySelector('.m-text'), 'wd', /(\s+)/), verbs = sec.querySelector('.m-verbs');
+                var queued = false;
+                function scrub() {
+                    queued = false;
+                    var r = sec.getBoundingClientRect(), p = reduce ? 1 : clamp(-r.top / (r.height - innerHeight));
+                    sec.style.setProperty('--p', p.toFixed(4));
+                    chars.forEach(function (c, i) {
+                        var e = 1 - outCubic(clamp((p - 0.02 - i * 0.012) / 0.38));
+                        c.el.style.transform = e ? 'translate3d(' + c.dx * e + 'px,' + c.dy * e + 'px,' + c.dz * e + 'px) rotateX(' +
+                            c.rx * e + 'deg) rotateY(' + c.ry * e + 'deg) rotateZ(' + c.rz * e + 'deg)' : '';
+                        c.el.style.opacity = 1 - e;
+                        c.el.style.filter = e > 0.01 ? 'blur(' + e * 12 + 'px)' : '';
+                        if (c.lit >= 0) c.el.classList.toggle('lit', p > 0.58 + c.lit * 0.012);
+                    });
+                    verbs.style.setProperty('--v', outCubic(clamp((p - 0.6) / 0.14)));
+                    wds.forEach(function (w, k) { w.style.opacity = 0.12 + 0.88 * clamp((p - 0.68 - k / wds.length * 0.24) / 0.05); });
                 }
-
-                // ── Rare glitch on title ──
-                function triggerGlitch() {
-                    if (reduced) return;
-                    title.classList.add('glitching');
-                    setTimeout(function () { title.classList.remove('glitching'); }, 330);
+                var onScroll = function () { if (!queued) { queued = true; requestAnimationFrame(scrub); } };
+                if (!reduce) {
+                    window.addEventListener('scroll', onScroll, { passive: true });
+                    window.addEventListener('resize', onScroll);
                 }
-                title.addEventListener('mouseenter', triggerGlitch);
-                if (!reduced) {
-                    setInterval(function () {
-                        if (Math.random() < 0.35) triggerGlitch();
-                    }, 7000);
-                }
-
-                // ── Shell session ──
-                var shell = document.getElementById('shell');
-                var session = [
-                    [['p', '$ '], ['o', 'whoami']],
-                    [['', 'guest']],
-                    [['p', '$ '], ['o', 'uname -srm']],
-                    [['', 'Linux 6.1.0-snowcodes x86_64']],
-                    [['p', '$ '], ['o', 'systemctl is-active snowcodes']],
-                    [['', 'active (running) since 2021']],
-                    [['p', '$ '], ['o', 'cat /etc/motd']],
-                    [['', 'Everything matters.']],
-                    [['p', '$ ']]
-                ];
-
-                function shellLine(parts) {
-                    var line = el('span', 'ln');
-                    parts.forEach(function (pt) { line.appendChild(el('span', pt[0], pt[1])); });
-                    shell.appendChild(line);
-                }
-
-                if (reduced) {
-                    session.forEach(shellLine);
-                } else {
-                    var li = 0;
-                    setTimeout(function next() {
-                        if (li >= session.length) return;
-                        var entry = session[li++];
-                        shellLine(entry);
-                        setTimeout(next, entry[0][0] === 'p' ? 420 + Math.random() * 300 : 90 + Math.random() * 120);
-                    }, 900);
-                }
-
-                // ── Access log (tail -f) ──
-                var access = document.getElementById('access');
-                var paths = ['/', '/', '/', '/services', '/services', '/manifesto', '/contact', '/logo.webp',
-                    '/poster.webp', '/api/status', '/api/status', '/robots.txt', '/sitemap.xml'];
-                var bad = ['/wp-login.php', '/.env', '/admin', '/phpmyadmin', '/.git/config'];
-                var MAX_ACCESS = 9;
-
-                function accessLine() {
-                    var d = new Date();
-                    var isBad = Math.random() < 0.12;
-                    var path = isBad ? pick(bad) : pick(paths);
-                    var status = isBad ? pick(['403', '404', '404']) : (Math.random() < 0.18 ? '304' : '200');
-                    var ms = isBad ? Math.floor(rnd(1, 4)) : Math.floor(rnd(3, 48));
-                    var ip = '10.' + Math.floor(rnd(0, 255)) + '.' + Math.floor(rnd(0, 255)) + '.' + Math.floor(rnd(1, 254));
-
-                    var line = el('span', 'ln');
-                    line.appendChild(el('span', 'ts', stamp(d)));
-                    line.appendChild(el('span', 'd', ip));
-                    line.appendChild(el('span', 'm', 'GET'));
-                    line.appendChild(el('span', isBad ? 's4xx' : 'o', path));
-                    line.appendChild(el('span', status === '200' ? 's200' : status === '304' ? 's304' : 's4xx', status));
-                    line.appendChild(el('span', 'ms', ms + 'ms'));
-                    access.appendChild(line);
-                    while (access.children.length > MAX_ACCESS) access.removeChild(access.firstChild);
-                }
-
-                if (reduced) {
-                    for (var i = 0; i < 6; i++) accessLine();
-                } else {
-                    var accessTimer;
-                    function scheduleAccess() {
-                        accessTimer = setTimeout(function () {
-                            if (!document.hidden) accessLine();
-                            scheduleAccess();
-                        }, rnd(700, 2400));
-                    }
-                    setTimeout(function () {
-                        for (var i = 0; i < 4; i++) accessLine();
-                        scheduleAccess();
-                    }, 1600);
-                }
-
-                // ── Ping (starts when visible) ──
-                var ping = document.getElementById('ping');
-                var seq = 0;
-                var MAX_PING = 8;
-                function pingLine() {
-                    seq++;
-                    var t = rnd(9.4, 14.8).toFixed(1);
-                    var line = el('span', 'ln');
-                    line.appendChild(el('span', 'd', '64 bytes: icmp_seq=' + seq + ' ttl=57 time='));
-                    line.appendChild(el('span', 't', t + ' ms'));
-                    ping.appendChild(line);
-                    while (ping.children.length > MAX_PING) ping.removeChild(ping.children[1]);
-                }
-                var head = el('span', 'ln');
-                head.appendChild(el('span', 'o', 'PING snowcodes.fr (2a01:4f8::1) 56 data bytes'));
-                ping.appendChild(head);
-
-                if (reduced) {
-                    for (var j = 0; j < 4; j++) pingLine();
-                } else {
-                    var pingStarted = false;
-                    var pingObs = new IntersectionObserver(function (entries) {
-                        if (pingStarted || !entries[0].isIntersecting) return;
-                        pingStarted = true;
-                        pingLine();
-                        setInterval(function () { if (!document.hidden) pingLine(); }, 1000);
-                    }, { threshold: 0.3 });
-                    pingObs.observe(ping);
-                }
+                scrub();
             })();
         </script>
     </body>
