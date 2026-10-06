@@ -10,6 +10,9 @@
         });
     }
 
+    // ── Footer year: set at build time, refreshed here in case no rebuild happened since New Year ──
+    document.getElementById('year').textContent = new Date().getFullYear();
+
     // ── Header on scroll ──
     var header = document.getElementById('header');
     var onScroll = function () { header.classList.toggle('scrolled', window.scrollY > 24); };
