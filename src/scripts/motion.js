@@ -32,7 +32,7 @@
         b.addEventListener('pointerleave', function () { b.style.transform = ''; });
     });
 
-    // ── Hero swarm: scattered pixels swirl in and assemble the logo, then hold.
+    // ── Hero swarm: the logo is lit up by a soft light sweep, then holds.
     // Each pixel is drawn stretched along its velocity (shutter blur); cursor repels, click sends a shockwave.
     var hero = document.querySelector('.hero'), stage = document.getElementById('stage');
     var cv = document.getElementById('swarm'), ctx = cv.getContext('2d');
@@ -42,7 +42,9 @@
     var logo = new Image();
     logo.src = '/assets/web/logo.png';
 
-    var W, H, dpr, cx, cy, size, N = 0, M = 0, pts;
+    var W, H, dpr, sx, sw, size, N = 0, M = 0, pts, INTRO = 1.8, EDGE = 0.15;
+    // Sweep front across the stage (0 → 1, normalised), with a soft lit edge of width EDGE.
+    var front = function (t) { return outCubic(clamp(t / INTRO)) * (1 + 2 * EDGE) - EDGE; };
     var x, y, vx, vy, hx, hy, heat, bucket;
     var mx = -1e4, my = -1e4, waves = [], t0 = 0, last = 0, acc = 0, running = false;
 
@@ -76,25 +78,26 @@
         g1.width = W / 4 | 0; g1.height = H / 4 | 0;
         g2.width = W / 12 | 0; g2.height = H / 12 | 0;
         g1x.imageSmoothingQuality = g2x.imageSmoothingQuality = 'high';
-        cx = s.left - r.left + s.width / 2; cy = s.top - r.top + s.height / 2;
+        sx = s.left - r.left; sw = s.width; t0 = performance.now();
         pts = sample(s.width, s.height, s.left - r.left, s.top - r.top);
         M = pts.length / 2; N = M + Math.round(W * H / 5000);
         [x, y, vx, vy, hx, hy, heat] = Array.from({ length: 7 }, function () { return new Float32Array(N); });
         bucket = new Uint8Array(N);
         for (var i = 0; i < N; i++) {
-            x[i] = hx[i] = Math.random() * W; y[i] = hy[i] = Math.random() * H;
-            if (i < M) {                                     // swirl in around the stage centre
-                var dx = x[i] - cx, dy = y[i] - cy, d = Math.sqrt(dx * dx + dy * dy) + 1;
-                vx[i] = -dy / d * 14; vy[i] = dx / d * 14; heat[i] = 0.6;
-            }
+            if (i < M) { x[i] = hx[i] = pts[2 * i]; y[i] = hy[i] = pts[2 * i + 1]; }   // already in place, revealed by the sweep
+            else { x[i] = hx[i] = Math.random() * W; y[i] = hy[i] = Math.random() * H; }
         }
     }
 
     function physics(t) {
-        var R = 110;
+        var R = 110, f0 = front(t);
         for (var i = 0; i < N; i++) {
             var X, Y, k, damp;
-            if (i < M) { X = pts[2 * i]; Y = pts[2 * i + 1]; k = 0.035; damp = 0.9; }
+            if (i < M) {
+                X = pts[2 * i]; Y = pts[2 * i + 1]; k = 0.035; damp = 0.9;
+                var e = f0 - (X - sx) / sw;                  // light the pixels just behind the front
+                if (e > 0 && e < EDGE && heat[i] < 1 - e / EDGE) heat[i] = 1 - e / EDGE;
+            }
             else { X = hx[i] + Math.sin(t * 0.3 + i) * 30; Y = hy[i] + Math.cos(t * 0.23 + i * 1.7) * 30; k = 0.004; damp = 0.95; }
             vx[i] = (vx[i] + (X - x[i]) * k) * damp;
             vy[i] = (vy[i] + (Y - y[i]) * k) * damp;
@@ -119,13 +122,13 @@
     }
 
     function render(t) {
-        var i, b;
+        var i, b, f0 = front(t);
         if (!N) return;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         ctx.clearRect(0, 0, W, H);
         for (i = 0; i < N; i++) {
             var hot = Math.max(heat[i], Math.min(1, Math.sqrt(vx[i] * vx[i] + vy[i] * vy[i]) / 14));
-            bucket[i] = i >= M ? 3 : hot > 0.6 ? 2 : hot > 0.25 ? 1 : 0;
+            bucket[i] = i >= M ? 3 : (pts[2 * i] - sx) / sw > f0 ? 255 : hot > 0.6 ? 2 : hot > 0.25 ? 1 : 0;
         }
         // Quad per pixel, stretched along velocity and thinned to keep its area.
         // Same winding everywhere → one fill per colour.
@@ -176,7 +179,7 @@
 
     function still() {                                       // reduced motion: the logo, formed, no loop
         for (var i = 0; i < M; i++) { x[i] = pts[2 * i]; y[i] = pts[2 * i + 1]; vx[i] = vy[i] = heat[i] = 0; }
-        render(0);
+        render(INTRO);
     }
 
     function start() {
