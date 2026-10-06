@@ -55,13 +55,13 @@ const t = ui[lang];
         <main>
             <!-- Hero -->
             <section class="hero" id="top">
-                <canvas id="swarm" aria-hidden="true"></canvas>
                 <div class="wrap hero-head">
-                    <h1 class="hero-title" aria-label="Code. Create. Explore."><span class="w" data-w="code" aria-hidden="true">Code.</span> <span class="w" data-w="create" aria-hidden="true">Create.</span> <span class="w" data-w="explore" aria-hidden="true">Explore.</span></h1>
+                    <h1 class="hero-title" aria-label="Code. Create. Explore."><span class="w" aria-hidden="true"><span style="--i:0">Code.</span></span> <span class="w" aria-hidden="true"><span style="--i:1">Create.</span></span> <span class="w" aria-hidden="true"><span style="--i:2">Explore.</span></span></h1>
                     <p class="hero-sub">{t.heroSub}</p>
                 </div>
 
                 <div class="hero-visual" id="stage" role="img" aria-label={t.stage}>
+                    <canvas id="matrix" aria-hidden="true"></canvas>
                 </div>
 
                 <div class="wrap hero-foot">
@@ -107,9 +107,9 @@ const t = ui[lang];
                         <h2 class="sec-title">{t.specs.title}</h2>
                         <p class="sec-lead">{t.specs.lead}</p>
                     </div>
-                    <ul class="spec-table reveal" data-delay="1">
-                        {t.specs.rows.map((r) => (
-                            <li>
+                    <ul class="spec-table reveal">
+                        {t.specs.rows.map((r, i) => (
+                            <li style={`--i:${i}`}>
                                 <span>{r.label}</span>
                                 {r.tags ? <span class="tags">{r.tags.map((g) => <i>{g}</i>)}</span> : <span>{r.value}</span>}
                             </li>
@@ -121,7 +121,6 @@ const t = ui[lang];
             <!-- Manifesto -->
             <section class="manifesto" id="manifesto">
                 <div class="m-pin">
-                    <div class="m-floor" aria-hidden="true"></div>
                     <div class="wrap">
                         <p class="m-big" aria-label="Everything matters."><span class="mw" aria-hidden="true">Everything</span> <span class="mw em" aria-hidden="true">matters.</span></p>
                         <p class="m-verbs">Code · Create · Explore</p>
