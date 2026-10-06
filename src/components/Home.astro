@@ -1,0 +1,166 @@
+---
+import { getAbsoluteLocaleUrl, getRelativeLocaleUrl } from 'astro:i18n';
+import { ui } from '../i18n.js';
+import '../styles/global.css';
+
+const lang = Astro.currentLocale ?? 'fr';
+const t = ui[lang];
+---
+
+<!doctype html>
+<html lang={lang}>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SNOWCODES</title>
+        <meta name="description" content={t.description}>
+        <meta name="theme-color" content="#000000">
+        {Object.keys(ui).map((l) => <link rel="alternate" hreflang={l} href={getAbsoluteLocaleUrl(l)}>)}
+        <link rel="alternate" hreflang="x-default" href={getAbsoluteLocaleUrl('fr')}>
+        <link rel="icon" type="image/svg+xml"
+            href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23000'/%3E%3Crect x='22' y='22' width='56' height='56' rx='6' fill='%23FF5A00'/%3E%3C/svg%3E">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <!-- Header -->
+        <header id="header">
+            <div class="wrap">
+                <a href="#" class="logo" aria-label={t.home}>
+                    <picture>
+                        <source srcset="/assets/web/logo.webp" type="image/webp">
+                        <img src="/assets/web/logo.png" alt="SNOWCODES" width="1200" height="530">
+                    </picture>
+                </a>
+                <ul class="menu">
+                    <li><a href="#services">{t.nav.services}</a></li>
+                    <li><a href="#specs">{t.nav.specs}</a></li>
+                    <li><a href="#manifesto">{t.nav.manifesto}</a></li>
+                    <li><a href="#contact">{t.nav.contact}</a></li>
+                </ul>
+                <div class="menu-right">
+                    <nav class="lang" aria-label={t.language}>
+                        {Object.entries(ui).map(([l, u]) => (
+                            <a href={getRelativeLocaleUrl(l)} hreflang={l} lang={l} aria-label={u.name}
+                                aria-current={l === lang ? 'page' : undefined}>{l.toUpperCase()}</a>
+                        ))}
+                    </nav>
+                    <a href="#contact" class="pill"><i></i><span>{t.available}</span></a>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- Hero -->
+            <section class="hero" id="top">
+                <canvas id="swarm" aria-hidden="true"></canvas>
+                <div class="wrap hero-head">
+                    <h1 class="hero-title" aria-label="Code. Create. Explore."><span class="w" data-w="code" aria-hidden="true">Code.</span> <span class="w" data-w="create" aria-hidden="true">Create.</span> <span class="w" data-w="explore" aria-hidden="true">Explore.</span></h1>
+                    <p class="hero-sub">{t.heroSub}</p>
+                </div>
+
+                <div class="hero-visual" id="stage" role="img" aria-label={t.stage}>
+                </div>
+
+                <div class="wrap hero-foot">
+                    <div class="specs">
+                        <div class="spec"><b>2021</b><small>{t.stats.since}</small></div>
+                        <div class="spec"><b>&lt;48<sup>h</sup></b><small>{t.stats.response}</small></div>
+                        <div class="spec"><b>100<sup>%</sup></b><small>{t.stats.custom}</small></div>
+                    </div>
+                    <div class="btns">
+                        <a href="#contact" class="btn btn-primary">{t.write}</a>
+                        <a href="#services" class="btn btn-light">{t.discover}</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services -->
+            <section class="block light" id="services">
+                <div class="wrap">
+                    <div class="sec-head-center reveal">
+                        <p class="eyebrow">{t.nav.services}</p>
+                        <h2 class="sec-title">{t.services.title}</h2>
+                        <p class="sec-lead">{t.services.lead}</p>
+                    </div>
+
+                    <div class="features">
+                        {t.services.items.map((f, i) => (
+                            <article class="feature reveal" data-delay={i % 3 || undefined}>
+                                <span class="num">0{i + 1}</span>
+                                <h3>{f.title}</h3>
+                                <p>{f.text}</p>
+                                <div class="stat"><b>{f.stat}</b><small>{f.tags}</small></div>
+                            </article>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <!-- Specs -->
+            <section class="block specs-sec" id="specs">
+                <div class="wrap">
+                    <div class="reveal">
+                        <p class="eyebrow">{t.nav.specs}</p>
+                        <h2 class="sec-title">{t.specs.title}</h2>
+                        <p class="sec-lead">{t.specs.lead}</p>
+                    </div>
+                    <ul class="spec-table reveal" data-delay="1">
+                        {t.specs.rows.map((r) => (
+                            <li>
+                                <span>{r.label}</span>
+                                {r.tags ? <span class="tags">{r.tags.map((g) => <i>{g}</i>)}</span> : <span>{r.value}</span>}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Manifesto -->
+            <section class="manifesto" id="manifesto">
+                <div class="m-pin">
+                    <div class="m-floor" aria-hidden="true"></div>
+                    <div class="wrap">
+                        <p class="m-big" aria-label="Everything matters."><span class="mw" aria-hidden="true">Everything</span> <span class="mw em" aria-hidden="true">matters.</span></p>
+                        <p class="m-verbs">Code · Create · Explore</p>
+                        <p class="m-text">{t.manifesto}</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact -->
+            <section class="contact light" id="contact">
+                <div class="wrap">
+                    <p class="eyebrow reveal">{t.nav.contact}</p>
+                    <h2 class="sec-title reveal" data-delay="1">{t.contact.title}</h2>
+                    <p class="sec-lead reveal" data-delay="1" style="margin-left:auto;margin-right:auto">{t.contact.lead}</p>
+                    <div class="btns reveal" data-delay="2">
+                        <a href="#" class="btn btn-dark" id="contact-btn">{t.write}</a>
+                    </div>
+                    <div class="contact-meta reveal" data-delay="3">
+                        <span><b>Snowcodes</b></span>
+                        <span>{t.contact.since} <b>2021</b></span>
+                        <span>{t.contact.location} <b>France</b></span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="wrap">
+                <span>Snowcodes &copy; 2025</span>
+                <a href="#services">{t.nav.services}</a>
+                <a href="#specs">{t.nav.specs}</a>
+                <a href="#contact">{t.nav.contact}</a>
+                <span>Code · Create · Explore</span>
+            </div>
+        </footer>
+
+        <script>
+            import '../scripts/site.js';
+            import '../scripts/motion.js';
+        </script>
+    </body>
+</html>
