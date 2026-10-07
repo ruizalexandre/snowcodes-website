@@ -140,7 +140,7 @@ export const ui = {
                     title: 'Données personnelles et cookies',
                     text: [
                         'Ce site ne dépose aucun cookie et n’utilise aucun outil de mesure d’audience, de publicité ou de suivi. Il ne contient aucun formulaire.',
-                        'Lors de votre visite, votre adresse IP est transmise à notre hébergeur GitHub, qui la conserve à des fins de sécurité. Aucune autre requête n’est envoyée à un service tiers.',
+                        'Lors de votre visite, votre adresse IP est transmise à notre hébergeur GitHub, qui la conserve à des fins de sécurité. GitHub étant établi aux États-Unis, ce transfert est encadré par le Data Privacy Framework UE–États-Unis, auquel GitHub adhère (<a href="https://www.dataprivacyframework.gov/participant/6174">inscription vérifiée le 7 octobre 2026</a>). Aucune autre requête n’est envoyée à un service tiers.',
                         'Si vous nous écrivez par e-mail, SNOWCODES utilise vos données uniquement pour vous répondre et assurer le suivi de nos échanges. Elles ne sont ni vendues ni cédées à des tiers.',
                         'Vous pouvez demander l’accès, la rectification ou l’effacement de vos données en écrivant à l’adresse ci-dessus. Vous pouvez aussi adresser une réclamation à la <a href="https://www.cnil.fr">CNIL</a>.',
                     ],
@@ -276,7 +276,7 @@ export const ui = {
                     title: 'Personal data and cookies',
                     text: [
                         'This site sets no cookies and uses no analytics, advertising or tracking tools. It contains no forms.',
-                        'When you visit, your IP address is sent to our host GitHub, which stores it for security purposes. No other requests are made to third-party services.',
+                        'When you visit, your IP address is sent to our host GitHub, which stores it for security purposes. As GitHub is based in the United States, this transfer is covered by the EU–US Data Privacy Framework, in which GitHub participates (<a href="https://www.dataprivacyframework.gov/participant/6174">listing checked on 7 October 2026</a>). No other requests are made to third-party services.',
                         'If you email us, SNOWCODES uses your data only to reply and follow up on our conversation. It is never sold or shared with third parties.',
                         'You can request access to, correction or deletion of your data by writing to the address above. You may also lodge a complaint with the <a href="https://www.cnil.fr/en">CNIL</a>, the French data protection authority.',
                     ],
