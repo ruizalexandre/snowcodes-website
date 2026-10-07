@@ -1,0 +1,22 @@
+---
+import Layout from './Layout.astro';
+import Experiments from './Experiments.astro';
+import { ui } from '../i18n.js';
+
+const lang = Astro.currentLocale ?? 'fr';
+const t = ui[lang];
+---
+
+<Layout title={`${t.nav.showcase} — SNOWCODES`} path="showcase">
+    <section class="block showcase">
+        <div class="wrap">
+            <div class="sec-head-center reveal">
+                <p class="eyebrow">{t.nav.showcase}</p>
+                <h1 class="sec-title">{t.showcase.title}</h1>
+                <p class="sec-lead">{t.showcase.lead}</p>
+            </div>
+
+            <Experiments />
+        </div>
+    </section>
+</Layout>

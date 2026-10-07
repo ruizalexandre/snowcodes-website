@@ -1,12 +1,24 @@
 // Page copy per locale. French is the default (served at /), English at /en/.
 // French typography: \u00a0 is a non-breaking space (before « : », between a number and its unit).
+
+// Legal notice facts, shared by both locales (source: RCS Carcassonne; host: GitHub Pages).
+const company = {
+    address: '10 rue Gaston Leroux, 11600 Conques-sur-Orbiel',
+    rcs: 'Carcassonne 908 464 076',
+    siret: '908 464 076 00029',
+    vat: 'FR21908464076',
+    host: 'GitHub, Inc.',
+    hostAddress: '88 Colin P. Kelly Jr. Street, San Francisco, CA 94107',
+    hostPhone: '+1 877 448 4820',
+};
+
 export const ui = {
     fr: {
         name: 'Français',
         description: 'SNOWCODES — Développement web et mobile, motion design et sites éditables par IA, pour les particuliers et les professionnels. Code. Create. Explore. Everything matters.',
         home: 'SNOWCODES — Accueil',
         language: 'Langue',
-        nav: { reel: 'Showreel', services: 'Services', specs: 'Fiche technique', manifesto: 'Manifeste', contact: 'Contact' },
+        nav: { reel: 'Showreel', services: 'Services', specs: 'Fiche technique', manifesto: 'Manifeste', showcase: 'Showcase', contact: 'Contact' },
         available: 'Disponible',
         heroSub: 'Développement web et mobile, motion design et sites éditables par IA.',
         stage: 'Animation\u00a0: un balayage de lumière dévoile le logo SNOWCODES, composé de pixels',
@@ -79,12 +91,61 @@ export const ui = {
                 { label: 'Localisation', value: 'France · depuis 2021' },
             ],
         },
+        showcase: {
+            title: 'Nos expérimentations.',
+            lead: 'Prototypes, études de mouvement et idées en cours : ce que nous explorons quand personne ne nous le demande.',
+            all: 'Voir tout le showcase',
+        },
         manifesto: 'Trois verbes, une seule règle. Nous construisons des logiciels comme on façonne un objet\u00a0: avec patience, retenue et attention à chaque détail. Rien de superflu, rien d’oublié.',
         contact: {
             title: 'Parlons de votre projet.',
             lead: 'Particulier ou professionnel, décrivez-nous votre besoin\u00a0: nous vous répondons sous 48\u00a0heures.',
             since: 'Depuis',
             location: 'Localisation',
+        },
+        legal: {
+            title: 'Mentions légales',
+            show: 'Afficher',
+            lead: 'Informations prévues par la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l’économie numérique.',
+            sections: [
+                {
+                    title: 'Éditeur du site',
+                    rows: [
+                        { label: 'Dénomination', value: 'SNOWCODES' },
+                        { label: 'Forme juridique', value: 'SARL au capital de 1 000 €' },
+                        { label: 'Siège social', value: `${company.address}, France` },
+                        { label: 'RCS', value: company.rcs },
+                        { label: 'SIRET', value: company.siret },
+                        { label: 'TVA intracommunautaire', value: company.vat },
+                        { label: 'E-mail', reveal: 'mail' },
+                        { label: 'Téléphone', reveal: 'tel' },
+                        { label: 'Directeur de la publication', value: 'Alexandre Ruiz, gérant' },
+                    ],
+                },
+                {
+                    title: 'Hébergement',
+                    rows: [
+                        { label: 'Hébergeur', value: company.host },
+                        { label: 'Adresse', value: `${company.hostAddress}, États-Unis` },
+                        { label: 'Téléphone', value: company.hostPhone },
+                    ],
+                },
+                {
+                    title: 'Propriété intellectuelle',
+                    text: [
+                        'Sauf mention contraire, l’ensemble des contenus de ce site (textes, visuels, animations, logo et code) est la propriété de SNOWCODES. Toute reproduction, même partielle, sans autorisation écrite préalable est interdite. Les marques citées appartiennent à leurs propriétaires respectifs.',
+                    ],
+                },
+                {
+                    title: 'Données personnelles et cookies',
+                    text: [
+                        'Ce site ne dépose aucun cookie et n’utilise aucun outil de mesure d’audience, de publicité ou de suivi. Il ne contient aucun formulaire.',
+                        'Lors de votre visite, votre adresse IP est transmise à notre hébergeur GitHub, qui la conserve à des fins de sécurité. Aucune autre requête n’est envoyée à un service tiers.',
+                        'Si vous nous écrivez par e-mail, SNOWCODES utilise vos données uniquement pour vous répondre et assurer le suivi de nos échanges. Elles ne sont ni vendues ni cédées à des tiers.',
+                        'Vous pouvez demander l’accès, la rectification ou l’effacement de vos données en écrivant à l’adresse ci-dessus. Vous pouvez aussi adresser une réclamation à la <a href="https://www.cnil.fr">CNIL</a>.',
+                    ],
+                },
+            ],
         },
     },
 
@@ -93,7 +154,7 @@ export const ui = {
         description: 'SNOWCODES — Web and mobile development, motion design and AI-editable websites, for individuals and businesses. Code. Create. Explore. Everything matters.',
         home: 'SNOWCODES — Home',
         language: 'Language',
-        nav: { reel: 'Showreel', services: 'Services', specs: 'Specs', manifesto: 'Manifesto', contact: 'Contact' },
+        nav: { reel: 'Showreel', services: 'Services', specs: 'Specs', manifesto: 'Manifesto', showcase: 'Showcase', contact: 'Contact' },
         available: 'Available',
         heroSub: 'Web and mobile development, motion design and AI-editable websites.',
         stage: 'Animation: a sweep of light unveils the SNOWCODES logo, made of pixels',
@@ -166,12 +227,61 @@ export const ui = {
                 { label: 'Location', value: 'France · since 2021' },
             ],
         },
+        showcase: {
+            title: 'Our experiments.',
+            lead: 'Prototypes, motion studies and work in progress: what we explore when nobody asks us to.',
+            all: 'See the full showcase',
+        },
         manifesto: 'Three verbs, one rule. We build software the way you would shape an object: with patience, restraint and attention to every detail. Nothing superfluous, nothing forgotten.',
         contact: {
             title: 'Let’s talk about your project.',
             lead: 'Whether you’re an individual or a business, tell us what you need: we’ll get back to you within 48\u00a0hours.',
             since: 'Since',
             location: 'Based in',
+        },
+        legal: {
+            title: 'Legal notice',
+            show: 'Show',
+            lead: 'Information required by French law (Loi n° 2004-575 of 21 June 2004 on confidence in the digital economy).',
+            sections: [
+                {
+                    title: 'Publisher',
+                    rows: [
+                        { label: 'Company name', value: 'SNOWCODES' },
+                        { label: 'Legal form', value: 'SARL (limited liability company), share capital €1,000' },
+                        { label: 'Registered office', value: `${company.address}, France` },
+                        { label: 'Trade register (RCS)', value: company.rcs },
+                        { label: 'SIRET', value: company.siret },
+                        { label: 'EU VAT number', value: company.vat },
+                        { label: 'Email', reveal: 'mail' },
+                        { label: 'Phone', reveal: 'tel' },
+                        { label: 'Publication director', value: 'Alexandre Ruiz, managing director' },
+                    ],
+                },
+                {
+                    title: 'Hosting',
+                    rows: [
+                        { label: 'Host', value: company.host },
+                        { label: 'Address', value: `${company.hostAddress}, United States` },
+                        { label: 'Phone', value: company.hostPhone },
+                    ],
+                },
+                {
+                    title: 'Intellectual property',
+                    text: [
+                        'Unless stated otherwise, all content on this site (text, visuals, animations, logo and code) is the property of SNOWCODES. Any reproduction, even partial, without prior written consent is prohibited. Trademarks mentioned belong to their respective owners.',
+                    ],
+                },
+                {
+                    title: 'Personal data and cookies',
+                    text: [
+                        'This site sets no cookies and uses no analytics, advertising or tracking tools. It contains no forms.',
+                        'When you visit, your IP address is sent to our host GitHub, which stores it for security purposes. No other requests are made to third-party services.',
+                        'If you email us, SNOWCODES uses your data only to reply and follow up on our conversation. It is never sold or shared with third parties.',
+                        'You can request access to, correction or deletion of your data by writing to the address above. You may also lodge a complaint with the <a href="https://www.cnil.fr/en">CNIL</a>, the French data protection authority.',
+                    ],
+                },
+            ],
         },
     },
 };

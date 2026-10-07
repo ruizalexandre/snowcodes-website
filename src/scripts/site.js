@@ -1,14 +1,24 @@
 (function () {
-    // ── Email obfuscation ──
-    var p = ['Y29udGFjdA==', 'c25vd2NvZGVz', 'ZnI='];
-    var addr = atob(p[0]) + '@' + atob(p[1]) + '.' + atob(p[2]);
+    // ── Contact details: stored encoded, decoded only on a real click, so scrapers never find them in the page ──
+    var mail = function () { return atob('Y29udGFjdA==') + '@' + atob('c25vd2NvZGVz') + '.' + atob('ZnI='); };
+    var phone = function () { return atob('MDYz') + atob('Mzcw') + atob('MTYzNQ=='); };   // 10 digits, French format
     var btn = document.getElementById('contact-btn');
     if (btn) {
         btn.addEventListener('click', function (e) {
             e.preventDefault();
-            window.location.href = 'mailto:' + addr;
+            if (e.isTrusted) window.location.href = 'mailto:' + mail();
         });
     }
+    document.querySelectorAll('[data-reveal]').forEach(function (b) {
+        b.addEventListener('click', function (e) {
+            if (!e.isTrusted) return;                            // a script's .click() doesn't count
+            var a = document.createElement('a'), tel = b.dataset.reveal === 'tel', v = tel ? phone() : mail();
+            a.href = tel ? 'tel:+33' + v.slice(1) : 'mailto:' + v;
+            a.textContent = tel ? v.replace(/\d\d(?=\d)/g, '$& ') : v;
+            b.replaceWith(a);
+            a.focus();
+        });
+    });
 
     // ── Footer year: set at build time, refreshed here in case no rebuild happened since New Year ──
     document.getElementById('year').textContent = new Date().getFullYear();

@@ -1,0 +1,18 @@
+---
+// Experiment cards, newest first: all of them on /showcase, the latest few on the home page.
+import { experiments } from '../showcase.js';
+
+const { limit = experiments.length } = Astro.props;
+const lang = Astro.currentLocale ?? 'fr';
+---
+
+<div class="features">
+    {experiments.slice(0, limit).map((e, i) => (
+        <a href={e[lang].href} class="feature reveal" data-delay={i % 3 || undefined}>
+            <span class="num">{String(experiments.length - i).padStart(2, '0')}</span>
+            <h3>{e[lang].title}</h3>
+            <p>{e[lang].text}</p>
+            <div class="stat"><b>{e.year}</b><small>{e.tags.join(' · ')}</small></div>
+        </a>
+    ))}
+</div>

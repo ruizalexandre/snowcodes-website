@@ -1,3 +1,11 @@
+/* Inter, self-hosted: one variable file (latin subset) covers weights 300–600 */
+@font-face {
+    font-family: 'Inter';
+    font-weight: 300 600;
+    font-display: swap;
+    src: url(/fonts/inter-latin.woff2) format('woff2');
+}
+
 *,
 *::before,
 *::after {
@@ -553,6 +561,7 @@ section.block {
 
 .feature {
     background: var(--white);
+    color: var(--ink);
     border-radius: 8px;
     padding: 40px 32px 36px;
     display: flex;
@@ -613,6 +622,60 @@ section.block {
     text-wrap: balance;
 }
 
+/* Showcase & legal pages: on black, clear of the fixed header */
+section.showcase,
+section.legal {
+    min-height: 100vh;
+    padding-top: 180px;
+}
+
+.btns.more { margin-top: 48px; }
+
+/* Legal page: heading on the left, specs table or text on the right */
+.legal-sec {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    gap: 96px;
+    margin-top: 80px;
+}
+
+.legal-sec h2 {
+    padding-top: 20px;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.legal-text {
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--grey);
+}
+
+.legal-text p + p { margin-top: 16px; }
+
+.legal a,
+.legal button {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* "Show" buttons for the email and phone: styled like the links they turn into */
+.legal button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.legal a:hover,
+.legal button:hover { color: var(--orange); }
+
+.menu a[aria-current="page"] { background: rgba(255, 255, 255, 0.1); }
+
 /* ══════════════════════════════════════════
    Specs table
    ══════════════════════════════════════════ */
@@ -648,15 +711,20 @@ section.block {
     right: 0;
     height: 1px;
     background: rgba(255, 255, 255, 0.14);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 1.4s var(--ease-out) calc(var(--i, 0) * 80ms);
 }
 
 .spec-table::before { top: 0; }
 .spec-table li::after { bottom: 0; }
 
-.spec-table li > * {
+/* Hidden until revealed only when animated (.reveal): plain tables, e.g. the legal page, show as is */
+.spec-table.reveal::before,
+.spec-table.reveal li::after {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.4s var(--ease-out) calc(var(--i, 0) * 80ms);
+}
+
+.spec-table.reveal li > * {
     opacity: 0;
     transition: opacity 1s var(--ease-out) calc(var(--i) * 80ms + 200ms);
 }
@@ -864,6 +932,8 @@ footer a:hover { color: var(--white); }
     .features { grid-template-columns: 1fr; }
     .feature { min-height: 0; }
     .specs-sec .wrap { grid-template-columns: 1fr; gap: 48px; }
+    .legal-sec { grid-template-columns: 1fr; gap: 0; margin-top: 56px; }
+    .legal-sec h2 { padding: 0 0 16px; }
     .menu { display: none; }
     header .wrap { grid-template-columns: 1fr auto; }
 }

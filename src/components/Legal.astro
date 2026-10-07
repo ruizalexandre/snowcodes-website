@@ -1,0 +1,36 @@
+---
+import Layout from './Layout.astro';
+import { ui } from '../i18n.js';
+
+const lang = Astro.currentLocale ?? 'fr';
+const t = ui[lang].legal;
+---
+
+<!-- No .reveal here: legal info must stay readable without JS. -->
+<Layout title={`${t.title} — SNOWCODES`} path="mentions-legales">
+    <section class="block legal">
+        <div class="wrap">
+            <h1 class="sec-title">{t.title}</h1>
+            <p class="sec-lead">{t.lead}</p>
+
+            {t.sections.map((s) => (
+                <div class="legal-sec">
+                    <h2>{s.title}</h2>
+                    {s.rows ? (
+                        <ul class="spec-table">
+                            {s.rows.map((r) => (
+                                <li>
+                                    <span>{r.label}</span>
+                                    {/* Email and phone are never in the page: site.js decodes them on a real click */}
+                                    <span>{r.reveal ? <button type="button" data-reveal={r.reveal}>{t.show}</button> : r.value}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <div class="legal-text">{s.text.map((p) => <p set:html={p} />)}</div>
+                    )}
+                </div>
+            ))}
+        </div>
+    </section>
+</Layout>

@@ -200,17 +200,14 @@
     }
 
     function start() {
-        var pending = false, key0 = '';
-        new ResizeObserver(function () {                          // (re)build whenever the stage changes size
-            if (pending) return;
-            pending = true;
-            requestAnimationFrame(function () {
-                pending = false;
-                var s = stage.getBoundingClientRect(), key = Math.round(s.width) + 'x' + Math.round(s.height);
-                if (key === key0) return;
-                key0 = key;
-                if (layout() && reduce) render(INTRO);            // reduced motion: the logo, lit, no loop
-            });
+        var key0 = '';
+        // (Re)build whenever the stage changes size, and redraw before this frame is painted: resizing a canvas
+        // clears it, so waiting for the next frame would leave it blank for as long as the window is being resized.
+        new ResizeObserver(function () {
+            var s = stage.getBoundingClientRect(), key = Math.round(s.width) + 'x' + Math.round(s.height);
+            if (key === key0) return;
+            key0 = key;
+            if (layout()) render(reduce ? INTRO : t0 ? (performance.now() - t0) / 1000 : 0);   // reduced motion: the logo, lit, no loop
         }).observe(stage);
         if (reduce) return;
         new IntersectionObserver(function (es) {
